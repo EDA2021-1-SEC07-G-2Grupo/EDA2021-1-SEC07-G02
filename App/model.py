@@ -81,7 +81,7 @@ def addVideo(catalog, video):
     # Cada autor, se crea en la lista de libros del catalogo, y se
     # crea un libro en la lista de dicho autor (apuntador al libro)
     for author in authors:
-        addBookAuthor(catalog, author.strip(), book)
+        addBookAuthor(catalog, author.strip(), video)
 def addCategory_id(catalog, video):
     # Se adiciona el libro a la lista de libros
     lt.addLast(catalog['video'], video)

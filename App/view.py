@@ -77,7 +77,7 @@ while True:
 
     elif int(inputs[0]) == 5:
         label = input("Etiqueta a buscar: ")
-        book_count = controller.countBooksByTag(catalog, label)
+        book_count = controller.countBooksByTag(catalog, label)#TOCA VER COMO SE HACE ESTA COSA
         print('Se encontraron: ', book_count, ' Libros')
 
     else:

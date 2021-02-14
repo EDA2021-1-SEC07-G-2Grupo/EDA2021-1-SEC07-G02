@@ -49,7 +49,7 @@ def loadData(catalog):
 
 def loadVideos(catalog):
     """
-    Carga los libros del archivo.  Por cada libro se toman sus autores y por
+    Carga los videos del archivo.  Por cada video se toman sus autores y por
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
@@ -61,12 +61,12 @@ def loadVideos(catalog):
 
 def loadCategory_id(catalog):
     """
-    Carga todos los tags del archivo y los agrega a la lista de tags
+    Carga todos los category_id del archivo y los agrega a la lista de category_id
     """
-    tagsfile = cf.data_dir + 'Videos/category-id.csv'
-    input_file = csv.DictReader(open(tagsfile, encoding='utf-8'), delimiter='\t'))
-    for tag in input_file:
-        model.addTag(catalog, tag)
+    category_id_file = cf.data_dir + 'Videos/category-id.csv'
+    input_file = csv.DictReader(open(category_id_file, encoding='utf-8'), delimiter='\t'))
+    for category_id in input_file:
+        model.addCategory_id(catalog, category_id)
 
 # Funciones de ordenamiento
 
