@@ -84,19 +84,7 @@ def addBook(catalog, book):
         addBookAuthor(catalog, author.strip(), book)
 
 
-def addBookAuthor(catalog, authorname, book):
-    """
-    Adiciona un autor a lista de autores, la cual guarda referencias
-    a los libros de dicho autor
-    """
-    authors = catalog['authors']
-    posauthor = lt.isPresent(authors, authorname)
-    if posauthor > 0:
-        author = lt.getElement(authors, posauthor)
-    else:
-        author = newAuthor(authorname)
-        lt.addLast(authors, author)
-    lt.addLast(author['books'], book)
+
 
 # Funciones para creacion de datos
 

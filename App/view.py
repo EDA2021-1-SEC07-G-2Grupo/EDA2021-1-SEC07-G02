@@ -36,11 +36,11 @@ operación solicitada
 
 def printMenu():
     print("Bienvenido")
-    print("1- Cargar información en el catálogo")
-    print("2- Consultar los videos más vistos por país y en una categoría especifica")
-    print("3- Consultar el video más trending por país")
-    print("4- Consultar el video que ha sido trending por más días y en una categoría especifica")
-    print("5- Consultar los n videos con más likes en un pais y con un tag especifico")
+    print("1- Cargar información en el catálogo") 
+    print("2- Consultar n numero de videos más vistos por país y en una categoría especifica(categoria, pais, numero de videos)")
+    print("3- Consultar el video más trending por país(pais)")
+    print("4- Consultar el video más trending por categoría (categoría)")
+    print("5- Consultar los n videos con más likes por categoría")
 
 catalog = None
 
@@ -52,9 +52,33 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        catalog = initCatalog()
+        loadData(catalog)
+        print('Registros de videos cargados: ' + str(lt.size(catalog['videos'])))
+        print('Asociación de Géneros a Libros cargados: ' +
+              str(lt.size(catalog['book_tags'])))
 
     elif int(inputs[0]) == 2:
-        pass
+        pais= input("Nombre del país al que desea consultar: ")
+        categoria = input("La categoría de los videos: ")
+        numero= int(input("Numero de videos que desea consultar: "))
+        videos = controller.getMostViewedVideos(catalog,pais,categoria,numero)#hay que hacer la función controller.getMostViewedVideos
+        printMostViewedVideos(videos)
+
+    elif int(inputs[0]) == 3:
+        pais = input("Nombre del pais a consultar: ")
+        video = controller.getTrendingVideo(catalog, pais)#hay que hacer la función controller.getTrendingVideo
+        printTrendingVideo(video)
+
+    elif int(inputs[0]) == 4:
+        category_name = input("Categoría a buscar: ")
+        video_categoría = controller.countTrendingByTags(catalog, category_name)#hay que hacer la función controller.countTrendingByTags
+        printTrendingByTags(video_categoría)
+
+    elif int(inputs[0]) == 5:
+        label = input("Etiqueta a buscar: ")
+        book_count = controller.countBooksByTag(catalog, label)
+        print('Se encontraron: ', book_count, ' Libros')
 
     else:
         sys.exit(0)
