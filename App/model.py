@@ -36,8 +36,67 @@ los mismos.
 """
 
 # Construccion de modelos
+def newCatalog():
+    """
+    Inicializa el catálogo de libros. Crea una lista vacia para guardar
+    todos los libros, adicionalmente, crea una lista vacia para los autores,
+    una lista vacia para los generos y una lista vacia para la asociación
+    generos y libros. Retorna el catalogo inicializado.
+    """
+
+    catalog = {'video_id': None,
+               'trending_date': None,
+               'title': None,
+               'channel_title': None,
+               'category_id': None,
+               'publish_time': None,
+               'tags': None,
+               'views': None,
+               'likes': None,
+               'dislikes': None,
+               'comment_count': None,
+               'thumbnail_link': None,
+               'comments_disabled': None,
+               'ratings_disabled': None,
+               'video_error_or_removed': None,
+               'description': None,
+               'country': None, 
+               }
+
+    catalog['books'] = lt.newList()
+    catalog['authors'] = lt.newList('ARRAY_LIST',
+                                    cmpfunction=compareauthors)
+    catalog['tags'] = lt.newList('SINGLE_LINKED',
+                                 cmpfunction=comparetagnames)
+    catalog['book_tags'] = lt.newList('SINGLE_LINKED')
+
+    return catalog
 
 # Funciones para agregar informacion al catalogo
+def addBook(catalog, book):
+    # Se adiciona el libro a la lista de libros
+    lt.addLast(catalog['video'], book)
+    # Se obtienen los autores del libro
+    authors = book['authors'].split(",")
+    # Cada autor, se crea en la lista de libros del catalogo, y se
+    # crea un libro en la lista de dicho autor (apuntador al libro)
+    for author in authors:
+        addBookAuthor(catalog, author.strip(), book)
+
+
+def addBookAuthor(catalog, authorname, book):
+    """
+    Adiciona un autor a lista de autores, la cual guarda referencias
+    a los libros de dicho autor
+    """
+    authors = catalog['authors']
+    posauthor = lt.isPresent(authors, authorname)
+    if posauthor > 0:
+        author = lt.getElement(authors, posauthor)
+    else:
+        author = newAuthor(authorname)
+        lt.addLast(authors, author)
+    lt.addLast(author['books'], book)
 
 # Funciones para creacion de datos
 
