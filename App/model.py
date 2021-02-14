@@ -44,7 +44,7 @@ def newCatalog():
     generos y libros. Retorna el catalogo inicializado.
     """
 
-    catalog = {'video_id': None,
+    catalog = {
                'trending_date': None,
                'title': None,
                'channel_title': None,
@@ -54,28 +54,37 @@ def newCatalog():
                'views': None,
                'likes': None,
                'dislikes': None,
-               'comment_count': None,
-               'thumbnail_link': None,
-               'comments_disabled': None,
-               'ratings_disabled': None,
-               'video_error_or_removed': None,
-               'description': None,
                'country': None, 
                }
-
-    catalog['books'] = lt.newList()
-    catalog['authors'] = lt.newList('ARRAY_LIST',
+    catalog['trending_date'] = lt.newList()
+    catalog['title'] = lt.newList()
+    catalog['channel_title'] = lt.newList('ARRAY_LIST',
                                     cmpfunction=compareauthors)
+    catalog['category_id'] = lt.newList()
+    catalog['publish_time'] = lt.newList()
     catalog['tags'] = lt.newList('SINGLE_LINKED',
                                  cmpfunction=comparetagnames)
-    catalog['book_tags'] = lt.newList('SINGLE_LINKED')
-
+    
+    catalog['views'] = lt.newList()
+    catalog['likes'] = lt.newList()
+    catalog['dislikes'] = lt.newList()
+    catalog['country'] = lt.newList()
+    
     return catalog
 
 # Funciones para agregar informacion al catalogo
-def addBook(catalog, book):
+def addVideo(catalog, video):
     # Se adiciona el libro a la lista de libros
-    lt.addLast(catalog['video'], book)
+    lt.addLast(catalog['video'], video)
+    # Se obtienen los autores del libro
+    authors = book['authors'].split(",")
+    # Cada autor, se crea en la lista de libros del catalogo, y se
+    # crea un libro en la lista de dicho autor (apuntador al libro)
+    for author in authors:
+        addBookAuthor(catalog, author.strip(), book)
+def addCategory_id(catalog, video):
+    # Se adiciona el libro a la lista de libros
+    lt.addLast(catalog['video'], video)
     # Se obtienen los autores del libro
     authors = book['authors'].split(",")
     # Cada autor, se crea en la lista de libros del catalogo, y se
