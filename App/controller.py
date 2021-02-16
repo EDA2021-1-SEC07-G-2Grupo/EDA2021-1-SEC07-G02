@@ -44,7 +44,7 @@ def loadData(catalog):
     estructura de datos
     """
     loadVideos(catalog)
-    loadCategory_id(catalog):
+    loadCategory_id(catalog)
 
 
 def loadVideos(catalog):
@@ -64,7 +64,7 @@ def loadCategory_id(catalog):
     Carga todos los category_id del archivo y los agrega a la lista de category_id
     """
     category_id_file = cf.data_dir + 'Videos/category-id.csv'
-    input_file = csv.DictReader(open(category_id_file, encoding='utf-8'), delimiter='\t'))
+    input_file = csv.DictReader(open(category_id_file, encoding='utf-8'), delimiter='\t')
     for category_id in input_file:
         model.addCategory_id(catalog, category_id)
 

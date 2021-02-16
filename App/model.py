@@ -58,12 +58,10 @@ def newCatalog():
                }
     catalog['trending_date'] = lt.newList()
     catalog['title'] = lt.newList()
-    catalog['channel_title'] = lt.newList('ARRAY_LIST',
-                                    cmpfunction=compareauthors)
+    catalog['channel_title'] = lt.newList('ARRAY_LIST')
     catalog['category_id'] = lt.newList()
     catalog['publish_time'] = lt.newList()
-    catalog['tags'] = lt.newList('SINGLE_LINKED',
-                                 cmpfunction=comparetagnames)
+    catalog['tags'] = lt.newList('SINGLE_LINKED')
     
     catalog['views'] = lt.newList()
     catalog['likes'] = lt.newList()
