@@ -42,6 +42,22 @@ def printMenu():
     print("4- Consultar el video más trending por categoría (categoría)")
     print("5- Consultar los n videos con más likes por categoría")
 
+
+def initCatalog():
+    """
+    Inicializa el catalogo de videos
+    """
+    return controller.initCatalog()
+
+
+
+
+def loadData(catalog):
+    """
+    Carga los videos en la estructura de datos
+    """
+    controller.loadData(catalog)
+
 catalog = None
 
 """
@@ -54,9 +70,8 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
         loadData(catalog)
-        print('Registros de videos cargados: ' + str(lt.size(catalog['videos'])))
-        print('Asociación de Géneros a Libros cargados: ' +
-              str(lt.size(catalog['book_tags'])))
+        print('Registros de videos cargados: ' + str(lt.size(catalog['title'])))
+        print('Los primeros datos de la lista gigante')
 
     elif int(inputs[0]) == 2:
         pais= input("Nombre del país al que desea consultar: ")
