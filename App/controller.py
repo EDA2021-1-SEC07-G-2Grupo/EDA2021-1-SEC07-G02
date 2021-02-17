@@ -30,12 +30,15 @@ El controlador se encarga de mediar entre la vista y el modelo.
 """
 
 # Inicialización del Catálogo de libros
+
+
 def initCatalog():
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
     catalog = model.newCatalog()
     return catalog
+
 
 # Funciones para la carga de datos
 def loadData(catalog):
@@ -46,7 +49,6 @@ def loadData(catalog):
     loadVideos(catalog)
     loadVideosCategory(catalog)
     sortBooks(catalog)
-    
 
 
 def loadVideos(catalog):
@@ -59,7 +61,6 @@ def loadVideos(catalog):
     input_file = csv.DictReader(open(videosfile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(catalog, video)
-
 
 
 def loadVideosCategory(catalog):

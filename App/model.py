@@ -31,9 +31,10 @@ from DISClib.Algorithms.Sorting import shellsort as sa
 assert cf
 
 """
-Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
-los mismos.
+Se define la estructura de un catálogo de videos. El catálogo tendrá dos
+listas, una para los videos, otra para las categorias de los mismos.
 """
+
 
 # Construccion de modelos
 def newCatalog():
@@ -46,16 +47,16 @@ def newCatalog():
 
     catalog = {
                 "video_id": None,
-               'trending_date': None,
-               'title': None,
-               'channel_title': None,
-               'category_id': None,
-               'publish_time': None,
-               'tags': None,
-               'views': None,
-               'likes': None,
-               'dislikes': None,
-               'country': None 
+                'trending_date': None,
+                'title': None,
+                'channel_title': None,
+                'category_id': None,
+                'publish_time': None,
+                'tags': None,
+                'views': None,
+                'likes': None,
+                'dislikes': None,
+                'country': None,
                }
     catalog['video_id'] = lt.newList("ARRAY_LIST")           
     catalog['trending_date'] = lt.newList("ARRAY_LIST")
@@ -69,8 +70,9 @@ def newCatalog():
     catalog['dislikes'] = lt.newList('ARRAY_LIST')
     catalog['country'] = lt.newList('ARRAY_LIST')
     catalog['categoryid'] = lt.newList('ARRAY_LIST')
-    
+
     return catalog
+
 
 # Funciones para agregar informacion al catalogo
 def addVideo(catalog, video):
@@ -130,12 +132,14 @@ def addVideoCategory_id(catalog, categoriavid):
     """
     Adiciona un tag a la lista de tags
     """
-    t = newVidcategoria(categoria['id'], categoria['name'])
+    t = newVidcategoria(categoriavid['id'], categoriavid['name'])
     lt.addLast(catalog['category-id'], t)
 
 # Funciones para creacion de datos
 
+
 def newVidcategoria(_id, category_id):
+
     """
     Esta estructura crea una relación entre un tag y
     los libros que han sido marcados con dicho tag.

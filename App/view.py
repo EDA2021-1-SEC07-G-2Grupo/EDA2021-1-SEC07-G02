@@ -34,6 +34,7 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
+
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo") 
@@ -50,15 +51,15 @@ def initCatalog():
     return controller.initCatalog()
 
 
-
-
 def loadData(catalog):
     """
     Carga los videos en la estructura de datos
     """
     controller.loadData(catalog)
 
+
 catalog = None
+
 
 """
 Menu principal
@@ -74,25 +75,25 @@ while True:
         print('Los primeros datos de la lista gigante')
 
     elif int(inputs[0]) == 2:
-        pais= input("Nombre del país al que desea consultar: ")
+        pais = input("Nombre del país al que desea consultar: ")
         categoria = input("La categoría de los videos: ")
-        numero= int(input("Numero de videos que desea consultar: "))
-        videos = controller.getMostViewedVideos(catalog,pais,categoria,numero)#hay que hacer la función controller.getMostViewedVideos
+        numero = int(input("Numero de videos que desea consultar: "))
+        videos = controller.getMostViewedVideos(catalog, pais, categoria, numero) #Hay que hacer la función controller.getMostViewedVideos
         printMostViewedVideos(videos)
 
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
-        video = controller.getTrendingVideo(catalog, pais)#hay que hacer la función controller.getTrendingVideo
+        video = controller.getTrendingVideo(catalog, pais) #Hay que hacer la función controller.getTrendingVideo
         printTrendingVideo(video)
 
     elif int(inputs[0]) == 4:
         category_name = input("Categoría a buscar: ")
-        video_categoría = controller.countTrendingByTags(catalog, category_name)#hay que hacer la función controller.countTrendingByTags
+        video_categoría = controller.countTrendingByTags(catalog, category_name) #Hay que hacer la función controller.countTrendingByTags
         printTrendingByTags(video_categoría)
 
     elif int(inputs[0]) == 5:
         label = input("Etiqueta a buscar: ")
-        book_count = controller.countBooksByTag(catalog, label)#TOCA VER COMO SE HACE ESTA COSA
+        book_count = controller.countBooksByTag(catalog, label) #TOCA VER COMO SE HACE ESTA COSA
         print('Se encontraron: ', book_count, ' Libros')
 
     else:
