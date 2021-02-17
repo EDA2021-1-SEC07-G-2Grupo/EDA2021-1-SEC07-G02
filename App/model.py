@@ -126,7 +126,7 @@ def addBookAuthor(catalog, authorname, video):
     lt.addLast(author['books'], book)
 
 
-def addVideoCategory_id(catalog, booktag):
+def addVideoCategory_id(catalog, categoriavid):
     """
     Adiciona un tag a la lista de tags
     """
@@ -134,6 +134,14 @@ def addVideoCategory_id(catalog, booktag):
     lt.addLast(catalog['category-id'], t)
 
 # Funciones para creacion de datos
+
+def newVidcategoria(_id, category_id):
+    """
+    Esta estructura crea una relación entre un tag y
+    los libros que han sido marcados con dicho tag.
+    """
+    categoriavid = {'id': _id, 'category_id': category_id}
+    return categoriavid
 
 # Funciones de consulta
 
