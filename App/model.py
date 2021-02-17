@@ -45,6 +45,7 @@ def newCatalog():
     """
 
     catalog = {
+                "video_id": None,
                'trending_date': None,
                'title': None,
                'channel_title': None,
@@ -54,41 +55,88 @@ def newCatalog():
                'views': None,
                'likes': None,
                'dislikes': None,
-               'country': None, 
+               'country': None 
                }
-    catalog['trending_date'] = lt.newList()
-    catalog['title'] = lt.newList()
+    catalog['video_id'] = lt.newList("ARRAY_LIST")           
+    catalog['trending_date'] = lt.newList("ARRAY_LIST")
+    catalog['title'] = lt.newList("ARRAY_LIST")
     catalog['channel_title'] = lt.newList('ARRAY_LIST')
-    catalog['category_id'] = lt.newList()
-    catalog['publish_time'] = lt.newList()
-    catalog['tags'] = lt.newList('SINGLE_LINKED')
-    
-    catalog['views'] = lt.newList()
-    catalog['likes'] = lt.newList()
-    catalog['dislikes'] = lt.newList()
-    catalog['country'] = lt.newList()
+    catalog['category_id'] = lt.newList('ARRAY_LIST')
+    catalog['publish_time'] = lt.newList('ARRAY_LIST')
+    catalog['tags'] = lt.newList('ARRAY_LIST')
+    catalog['views'] = lt.newList('ARRAY_LIST')
+    catalog['likes'] = lt.newList('ARRAY_LIST')
+    catalog['dislikes'] = lt.newList('ARRAY_LIST')
+    catalog['country'] = lt.newList('ARRAY_LIST')
     
     return catalog
 
 # Funciones para agregar informacion al catalogo
 def addVideo(catalog, video):
     # Se adiciona el libro a la lista de libros
-    lt.addLast(catalog['video'], video)
+    lt.addLast(catalog['video_id'], video)
     # Se obtienen los autores del libro
-    authors = book['authors'].split(",")
+    trending_date = video['trending_date'].split(",")
+    title = video['title'].split(",")
+    channel_title = video['channel_title'].split(",")
+    category_id = video['category_id'].split(",")
+    publish_time = video['publish_time'].split(",")
+    tags = video['tags'].split(",")
+    views = video['views'].split(",")
+    likes = video['likes'].split(",")
+    dislikes = video['dislikes'].split(",")
+    country = video['country'].split(",")
     # Cada autor, se crea en la lista de libros del catalogo, y se
     # crea un libro en la lista de dicho autor (apuntador al libro)
-    for author in authors:
-        addBookAuthor(catalog, author.strip(), video)
-def addCategory_id(catalog, video):
-    # Se adiciona el libro a la lista de libros
-    lt.addLast(catalog['video'], video)
-    # Se obtienen los autores del libro
-    authors = book['authors'].split(",")
-    # Cada autor, se crea en la lista de libros del catalogo, y se
-    # crea un libro en la lista de dicho autor (apuntador al libro)
-    for author in authors:
-        addBookAuthor(catalog, author.strip(), book)
+    for trending_date in trending_date:
+        addBookAuthor(catalog, trending_date.strip(), video)
+    for title in title:
+        addBookAuthor(catalog, title.strip(), video)
+    for channel_title in channel_title:
+        addBookAuthor(catalog, channel_title.strip(), video)
+    for category_id in category_id:
+        addBookAuthor(catalog, category_id.strip(), video)
+    for publish_time in publish_time:
+        addBookAuthor(catalog, publish_time.strip(), video)
+    for tags in tags:
+        addBookAuthor(catalog, tags.strip(), video)
+    for views in views:
+        addBookAuthor(catalog, views.strip(), video)
+    for likes in likes:
+        addBookAuthor(catalog, likes.strip(), video)
+    for dislikes in dislikes:
+        addBookAuthor(catalog, dislikes.strip(), video)
+    for country in country:
+        addBookAuthor(catalog, country.strip(), video)
+
+
+def addBookAuthor(catalog, authorname, video):
+    """
+    Adiciona un autor a lista de autores, la cual guarda referencias
+    a los libros de dicho autor
+    """
+    authors = catalog['authors']
+    posauthor = lt.isPresent(authors, authorname)
+    if posauthor > 0:
+        author = lt.getElement(authors, posauthor)
+    else:
+        author = newAuthor(authorname)
+        lt.addLast(authors, author)
+    lt.addLast(author['books'], book)
+
+
+"""def addCategory_id(catalog, categoria):
+    
+    t = newcategoria(categoria['id'], categoria['tagname_id'])
+    lt.addLast(catalog['category_id'], t)"""
+
+
+def addVideoCategory_id(catalog, booktag):
+    """
+    Adiciona un tag a la lista de tags
+    """
+    t = newVidcategoria(categoria['id'], categoria['tagname_id'])
+    lt.addLast(catalog['categoryid'], t)
 
 
 
