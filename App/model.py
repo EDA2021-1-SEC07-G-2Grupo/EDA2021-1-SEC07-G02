@@ -116,14 +116,14 @@ def addBookAuthor(catalog, authorname, video):
     Adiciona un autor a lista de autores, la cual guarda referencias
     a los libros de dicho autor
     """
-    authors = catalog['authors']
-    posauthor = lt.isPresent(authors, authorname)
+    trending_date = catalog['trending_date']
+    posauthor = lt.isPresent(trending_date, authorname)
     if posauthor > 0:
-        author = lt.getElement(authors, posauthor)
+        video = lt.getElement(trending_date, posauthor)
     else:
-        author = newAuthor(authorname)
-        lt.addLast(authors, author)
-    lt.addLast(author['books'], book)
+        video = newAuthor(authorname)
+        lt.addLast(trending_date, video)
+    lt.addLast(video['video_id'], video)
 
 
 def addVideoCategory_id(catalog, categoriavid):
