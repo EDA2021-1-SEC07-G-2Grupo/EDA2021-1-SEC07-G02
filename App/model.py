@@ -68,6 +68,7 @@ def newCatalog():
     catalog['likes'] = lt.newList('ARRAY_LIST')
     catalog['dislikes'] = lt.newList('ARRAY_LIST')
     catalog['country'] = lt.newList('ARRAY_LIST')
+    catalog['categoryid'] = lt.newList('ARRAY_LIST')
     
     return catalog
 
@@ -125,21 +126,12 @@ def addBookAuthor(catalog, authorname, video):
     lt.addLast(author['books'], book)
 
 
-"""def addCategory_id(catalog, categoria):
-    
-    t = newcategoria(categoria['id'], categoria['tagname_id'])
-    lt.addLast(catalog['category_id'], t)"""
-
-
 def addVideoCategory_id(catalog, booktag):
     """
     Adiciona un tag a la lista de tags
     """
-    t = newVidcategoria(categoria['id'], categoria['tagname_id'])
-    lt.addLast(catalog['categoryid'], t)
-
-
-
+    t = newVidcategoria(categoria['id'], categoria['name'])
+    lt.addLast(catalog['category-id'], t)
 
 # Funciones para creacion de datos
 

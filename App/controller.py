@@ -44,7 +44,9 @@ def loadData(catalog):
     estructura de datos
     """
     loadVideos(catalog)
-    loadCategory_id(catalog)
+    loadVideosCategory(catalog)
+    sortBooks(catalog)
+    
 
 
 def loadVideos(catalog):
@@ -59,14 +61,15 @@ def loadVideos(catalog):
         model.addVideo(catalog, video)
 
 
-def loadCategory_id(catalog):
+
+def loadVideosCategory(catalog):
     """
-    Carga todos los category_id del archivo y los agrega a la lista de category_id
+    Carga la información que asocia tags con libros.
     """
-    category_id_file = cf.data_dir + 'Videos/category-id.csv'
-    input_file = csv.DictReader(open(category_id_file, encoding='utf-8'), delimiter='\t')
-    for category_id in input_file:
-        model.addCategory_id(catalog, category_id)
+    videocategoryfile = cf.data_dir + "Videos/category-id.csv"
+    input_file = csv.DictReader(open(videocategoryfile, encoding='utf-8'), delimiter='\t')
+    for videotag in input_file:
+        model.addVideoCategory_id(catalog, videotag)
 
 # Funciones de ordenamiento
 
