@@ -48,7 +48,7 @@ def loadData(catalog):
     """
     loadVideos(catalog)
     loadVideosCategory(catalog)
-    sortBooks(catalog)
+    """sortBooks(catalog)"""
 
 
 def loadVideos(catalog):

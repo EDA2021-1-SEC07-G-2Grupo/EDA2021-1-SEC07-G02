@@ -22,9 +22,9 @@
 
 import config as cf
 import sys
-import controller
 from DISClib.ADT import list as lt
 assert cf
+import controller
 
 
 """
@@ -38,7 +38,7 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo") 
-    print("2- Consultar n numero de videos más vistos por país y en una categoría especifica(categoria, pais, numero de videos)")
+    print("2- Consultar n numero de videos más vistos por país y en una categoria especifica(categoria, pais, numero de videos)")
     print("3- Consultar el video más trending por país(pais)")
     print("4- Consultar el video más trending por categoría (categoría)")
     print("5- Consultar los n videos con más likes por categoría")
@@ -71,8 +71,7 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
         loadData(catalog)
-        print('Registros de videos cargados: ' + str(lt.size(catalog['title'])))
-        print('Los primeros datos de la lista gigante')
+        print("Material audiovisual cargados: " + str(lt.size(catalog['Video'])))
 
     elif int(inputs[0]) == 2:
         pais = input("Nombre del país al que desea consultar: ")

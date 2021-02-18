@@ -26,6 +26,7 @@
 
 
 import config as cf
+
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 assert cf
@@ -45,138 +46,28 @@ def newCatalog():
     """
 
     catalog = {
-                "video_id": None,
-               'trending_date': None,
-               'title': None,
-               'channel_title': None,
-               'category_id': None,
-               'publish_time': None,
-               'tags': None,
-               'views': None,
-               'likes': None,
-               'dislikes': None,
-               'country': None 
+                "Video": None,
+                'video_id': None
                }
-    catalog['video_id'] = lt.newList("ARRAY_LIST")           
-    catalog['trending_date'] = lt.newList("ARRAY_LIST")
-    catalog['title'] = lt.newList("ARRAY_LIST")
-    catalog['channel_title'] = lt.newList('ARRAY_LIST')
-    catalog['category_id'] = lt.newList('ARRAY_LIST')
-    catalog['publish_time'] = lt.newList('ARRAY_LIST')
-    catalog['tags'] = lt.newList('ARRAY_LIST')
-    catalog['views'] = lt.newList('ARRAY_LIST')
-    catalog['likes'] = lt.newList('ARRAY_LIST')
-    catalog['dislikes'] = lt.newList('ARRAY_LIST')
-    catalog['country'] = lt.newList('ARRAY_LIST')
-    catalog['categoryid'] = lt.newList('ARRAY_LIST')
-    
+    catalog['Video'] = lt.newList()           
+    catalog['video_id'] = lt.newList("SINGLE_LINKED")
+
     return catalog
 
 # Funciones para agregar informacion al catalogo
-def addVideo(catalog, video):
+def addVideo(catalog, videos):
     # Se adiciona el libro a la lista de libros
-    lt.addLast(catalog['video_id'], video)
+    lt.addLast(catalog["Video"], videos)
+
     # Se obtienen los autores del libro
-    trending_date = video['trending_date'].split(",")
-    title = video['title'].split(",")
-    channel_title = video['channel_title'].split(",")
-    category_id = video['category_id'].split(",")
-    publish_time = video['publish_time'].split(",")
-    tags = video['tags'].split(",")
-    views = video['views'].split(",")
-    likes = video['likes'].split(",")
-    dislikes = video['dislikes'].split(",")
-    country = video['country'].split(",")
-    # Cada autor, se crea en la lista de libros del catalogo, y se
-    # crea un libro en la lista de dicho autor (apuntador al libro)
-    for trending_date in trending_date:
-        addtrending_date(catalog, trending_date.strip(), video)
-    for title in title:
-        addBookAuthor(catalog, title.strip(), video)
-    for channel_title in channel_title:
-        addBookAuthor(catalog, channel_title.strip(), video)
-    for category_id in category_id:
-        addBookAuthor(catalog, category_id.strip(), video)
-    for publish_time in publish_time:
-        addBookAuthor(catalog, publish_time.strip(), video)
-    for tags in tags:
-        addBookAuthor(catalog, tags.strip(), video)
-    for views in views:
-        addBookAuthor(catalog, views.strip(), video)
-    for likes in likes:
-        addBookAuthor(catalog, likes.strip(), video)
-    for dislikes in dislikes:
-        addBookAuthor(catalog, dislikes.strip(), video)
-    for country in country:
-        addBookAuthor(catalog, country.strip(), video)
-
-
-def addtrending_date(catalog, authorname, video):
-    """
-    Adiciona un autor a lista de autores, la cual guarda referencias
-    a los libros de dicho autor
-    """
-    trending_date = catalog['trending_date']
-    posauthor = lt.isPresent(trending_date, authorname)
-    if posauthor > 0:
-        trending_dates = lt.getElement(trending_date, posauthor)
-    else:
-        trending_dates = newAuthor(authorname)
-        lt.addLast(trending_dates, trending_date)
-    lt.addLast(trending_date['video_id'], video)
-
-    
-def addBookAuthor(catalog, authorname, video):
-    """
-    Adiciona un autor a lista de autores, la cual guarda referencias
-    a los libros de dicho autor
-    """
-    trending_date = catalog['trending_date']
-    posauthor = lt.isPresent(trending_date, authorname)
-    if posauthor > 0:
-        video = lt.getElement(trending_date, posauthor)
-    else:
-        video = newAuthor(authorname)
-        lt.addLast(trending_date, video)
-    lt.addLast(video['video_id'], video)
-
-
-def addBookAuthor(catalog, authorname, video):
-    """
-    Adiciona un autor a lista de autores, la cual guarda referencias
-    a los libros de dicho autor
-    """
-    trending_date = catalog['trending_date']
-    posauthor = lt.isPresent(trending_date, authorname)
-    if posauthor > 0:
-        video = lt.getElement(trending_date, posauthor)
-    else:
-        video = newAuthor(authorname)
-        lt.addLast(trending_date, video)
-    lt.addLast(video['video_id'], video)
-
-
-def addBookAuthor(catalog, authorname, video):
-    """
-    Adiciona un autor a lista de autores, la cual guarda referencias
-    a los libros de dicho autor
-    """
-    trending_date = catalog['trending_date']
-    posauthor = lt.isPresent(trending_date, authorname)
-    if posauthor > 0:
-        video = lt.getElement(trending_date, posauthor)
-    else:
-        video = newAuthor(authorname)
-        lt.addLast(trending_date, video)
-    lt.addLast(video['video_id'], video)
-
+       
 
 def addVideoCategory_id(catalog, categoriavid):
     """
     Adiciona un tag a la lista de tags
     """
-    t = newVidcategoria(categoria['id'], categoria['name'])
-    lt.addLast(catalog['category-id'], t)
+    t = newVidcategoria(categoriavid['id'], categoriavid['name'])
+    lt.addLast(catalog["video_id"], t)
 
 # Funciones para creacion de datos
 
@@ -187,6 +78,7 @@ def newVidcategoria(_id, category_id):
     """
     categoriavid = {'id': _id, 'category_id': category_id}
     return categoriavid
+
 
 # Funciones de consulta
 
