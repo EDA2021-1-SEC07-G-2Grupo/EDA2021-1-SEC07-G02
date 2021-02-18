@@ -73,5 +73,13 @@ def loadVideosCategory(catalog):
         model.addVideoCategory_id(catalog, videotag)
 
 # Funciones de ordenamiento
+def cmpVideosByViews(video1, video2):
+    """
+    Devuelve verdadero (True) si los 'views' de video1 son menores que los del video2
+    Args:
+    video1: informacion del primer video que incluye su valor 'views'
+    video2: informacion del segundo video que incluye su valor 'views'
+    """
 
+    
 # Funciones de consulta sobre el catálogo
