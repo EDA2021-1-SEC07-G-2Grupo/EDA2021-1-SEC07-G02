@@ -45,7 +45,7 @@ def printMenu():
     print("0- Salir")
 
 
-def initCatalog(tipo_de_lista):
+def initCatalog(tipo_de_lista:int):
     """
     Inicializa el catalogo de videos
     """
@@ -71,7 +71,7 @@ while True:
     if int(inputs[0]) == 1:
         print("Presione 1 si quiere cargar los datos representados en 'SINGLE_LINKED'  ")
         print("Presione 2 si quiere cargar los datos representados en 'ARRAY_LIST'\n")
-        tipo_de_lista=input()
+        tipo_de_lista=int(input())
         print("Cargando información de los archivos ....")
         catalog = initCatalog(tipo_de_lista)
         loadData(catalog)
