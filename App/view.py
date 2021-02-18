@@ -81,6 +81,7 @@ while True:
         pais = input("Nombre del país al que desea consultar: ")
         categoria = input("La categoría de los videos: ")
         numero = int(input("Numero de videos que desea consultar: "))
+        algoritmo = str(input("Qué algoritmo desea utilizar: "))
         videos = controller.getMostViewedVideos(catalog, pais, categoria, numero) #Hay que hacer la función controller.getMostViewedVideos
         printMostViewedVideos(videos)
 
