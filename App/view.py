@@ -42,13 +42,14 @@ def printMenu():
     print("3- Consultar el video más trending por país(pais)")
     print("4- Consultar el video más trending por categoría (categoría)")
     print("5- Consultar los n videos con más likes por categoría")
+    print("0- Salir")
 
 
-def initCatalog():
+def initCatalog(tipo_de_lista):
     """
     Inicializa el catalogo de videos
     """
-    return controller.initCatalog()
+    return controller.initCatalog(tipo_de_lista)
 
 
 def loadData(catalog):
@@ -68,8 +69,11 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
+        print("Presione 1 si quiere cargar los datos representados en 'SINGLE_LINKED'  ")
+        print("Presione 2 si quiere cargar los datos representados en 'ARRAY_LIST'\n")
+        tipo_de_lista=input()
         print("Cargando información de los archivos ....")
-        catalog = initCatalog()
+        catalog = initCatalog(tipo_de_lista)
         loadData(catalog)
         print("Material audiovisual cargados: " + str(lt.size(catalog['Video'])))
 
