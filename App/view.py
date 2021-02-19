@@ -86,8 +86,8 @@ while True:
         print("-2 insertion ")
         print("-3 shell \n ")
         algoritmo = str(input())
-        videos = controller.sortVideos(catalog, size, algoritmo) #Hay que hacer la función controller.getMostViewedVideos
-        printMostViewedVideos(videos)
+        vid = controller.sortVideos(catalog, size, algoritmo)
+        print(vid)
 
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
