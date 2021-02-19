@@ -29,6 +29,8 @@ import config as cf
 
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import insertionsort as inser
+from DISClib.Algorithms.Sorting import selectionsort as selc
 assert cf
 
 """
@@ -97,3 +99,18 @@ def cmpVideosByViews(video1, video2):
     return (float(video1['views']) < float(video2['views']))
 
 # Funciones de ordenamiento
+
+def sortBooks_byViews(catalog, size, algoritmo):
+    if algoritmo==1:
+        funcion_sort=selec.sort
+    elif algoritmo==2:
+        funcion_sort=inser.sort
+    else:
+        funcion_sort=sa.sort
+    sub_list = lt.subList(catalog['Video'], 0, size)
+    sub_list = sub_list.copy()
+    start_time = time.process_time()
+    sorted_list = funcion_sort(sub_list, cmpVideosByViews)
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return elapsed_time_mseg, sorted_list

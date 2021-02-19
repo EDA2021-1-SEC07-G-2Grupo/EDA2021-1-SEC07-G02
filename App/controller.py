@@ -73,7 +73,8 @@ def loadVideosCategory(catalog):
         model.addVideoCategory_id(catalog, videotag)
 
 # Funciones de ordenamiento
-
+def sortVideos(catalog, size, algoritmo):
+    return model.sortBooks_byViews(catalog, size, algoritmo)
 
     
 # Funciones de consulta sobre el catálogo
