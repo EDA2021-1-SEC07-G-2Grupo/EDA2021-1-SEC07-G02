@@ -87,6 +87,7 @@ while True:
         print("-3 shell \n ")
         algoritmo = str(input())
         n=0
+        suma=0
         while n<3:
             vid = controller.sortVideos(catalog, size, algoritmo)
             suma+=vid
