@@ -69,7 +69,7 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        print("Presione 1 si quiere cargar los datos representados en 'SINGLE_LINKED'  ")
+        print("Presione 1 si quiere cargar los datos representados en 'LINKED_LIST'  ")
         print("Presione 2 si quiere cargar los datos representados en 'ARRAY_LIST'\n")
         tipo_de_lista=int(input())
         print("Cargando información de los archivos ....")
