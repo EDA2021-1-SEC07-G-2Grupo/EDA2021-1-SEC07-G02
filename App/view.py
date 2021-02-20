@@ -86,8 +86,13 @@ while True:
         print("-2 insertion ")
         print("-3 shell \n ")
         algoritmo = str(input())
-        vid = controller.sortVideos(catalog, size, algoritmo)
-        print(vid)
+        n=0
+        while n<3:
+            vid = controller.sortVideos(catalog, size, algoritmo)
+            suma+=vid
+            n+=1
+        suma=suma/3
+        print(suma)
 
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
