@@ -26,7 +26,7 @@
 
 
 import config as cf
-
+import time
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Sorting import insertionsort as inser
@@ -104,17 +104,14 @@ def sortBooks_byViews(catalog, size, algoritmo):
     sub_list = lt.subList(catalog['Video'], 0, size)
     sub_list = sub_list.copy()
     start_time = time.process_time()
-    sorted_list=organizar_una_lista(sub_list,algoritmo)
-    
-    stop_time = time.process_time()
-    elapsed_time_mseg = (stop_time - start_time)*1000
-    return elapsed_time_mseg, sorted_list
-    
-def organizar_una_lista(lista, algoritmo):
     if algoritmo==1:
         sorted_list = selec.sort(sub_list, cmpVideosByViews)
     elif algoritmo==2:
         sorted_list = inser.sort(sub_list, cmpVideosByViews)
     else:
         sorted_list = sa.sort(sub_list, cmpVideosByViews)
-        return sorted_list
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return elapsed_time_mseg, sorted_list
+    
+
