@@ -75,6 +75,7 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog(tipo_de_lista)
         loadData(catalog)
+        print(lt.firstElement(catalog))
         print("Material audiovisual cargados: " + str(lt.size(catalog['Video'])))
 
     elif int(inputs[0]) == 2:
@@ -87,8 +88,7 @@ while True:
         print("-3 shell \n ")
         algoritmo = str(input())
         vid = controller.sortVideos(catalog, size, algoritmo)
-        print(vid)
-
+        
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
         video = controller.getTrendingVideo(catalog, pais) #Hay que hacer la función controller.getTrendingVideo
