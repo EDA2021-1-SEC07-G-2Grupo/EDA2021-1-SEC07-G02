@@ -112,6 +112,6 @@ def sortBooks_byViews(catalog, size, algoritmo):
         sorted_list = sa.sort(sub_list, cmpVideosByViews)
     stop_time = time.process_time()
     elapsed_time_mseg = (stop_time - start_time)*1000
-    return elapsed_time_mseg#sorted_list,
+    return elapsed_time_mseg,sorted_list
     
 
