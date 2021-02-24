@@ -75,6 +75,7 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog(tipo_de_lista)
         loadData(catalog)
+        print(lt.firstElement(catalog))
         print("Material audiovisual cargados: " + str(lt.size(catalog['Video'])))
 
     elif int(inputs[0]) == 2:
