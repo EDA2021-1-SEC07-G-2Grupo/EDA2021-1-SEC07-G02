@@ -67,14 +67,16 @@ def loadVideosCategory(catalog):
     """
     Carga la información que asocia tags con libros.
     """
-    videocategoryfile = cf.data_dir + "Videos/category-id.csv"
+    videocategoryfile = cf.data_dir + 'Videos/category-id.csv'
     input_file = csv.DictReader(open(videocategoryfile, encoding='utf-8'), delimiter='\t')
     for videotag in input_file:
         model.addVideoCategory_id(catalog, videotag)
 
 # Funciones de ordenamiento
+
+
 def sortVideos(catalog, size, algoritmo):
     return model.sortBooks_byViews(catalog, size, algoritmo)
 
-    
+
 # Funciones de consulta sobre el catálogo
