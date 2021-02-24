@@ -101,7 +101,7 @@ def cmpVideosByViews(video1, video2):
 # Funciones de ordenamiento
 
 def sortBooks_byViews(catalog, size, algoritmo):
-    sub_list = lt.subList(catalog['Video'], 1, size)
+    sub_list = lt.subList(catalog["2"],0, size)
     sub_list = sub_list.copy()
     start_time = time.process_time()
     if algoritmo==1:
@@ -111,7 +111,7 @@ def sortBooks_byViews(catalog, size, algoritmo):
     else:
         sorted_list = sa.sort(sub_list, cmpVideosByViews)
     stop_time = time.process_time()
-    elapsed_time_mseg = (stop_time - start_time)*1000
-    return  sorted_list
+    elapsed_time_mseg = (stop_time - start_time)*1000  
+    return  sorted_list,elapsed_time_mseg
     
 
