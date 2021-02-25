@@ -57,8 +57,8 @@ def newCatalog(tipo_de_lista):
                 "Video": None,
                 'video_id': None
                }
-    catalog['Video'] = lt.newList(lista)           
-    catalog['video_id'] = lt.newList(lista)
+    catalog['Video'] = lt.newList(lista,cmpfunction=cmpvideos)           
+    catalog['video_id'] = lt.newList(lista,cmpfunction=comparecategorynames)
 
     return catalog
 
@@ -91,7 +91,14 @@ def newVidcategoria(_id, category_id):
 # Funciones de consulta
 
 # Funciones utilizadas para comparar elementos dentro de una list
+def cmpvideos(vid1,vid2):
+    if (vid1.lower() in vid2['id'].lower()):
+        return 0
+    return -1
+def comparecategorynames(name, tag):
+    return (name == tag['name'])
 
+    
 
 def cmpVideosByViews(video1, video2):
     """
