@@ -76,7 +76,7 @@ def loadVideosCategory(catalog):
 
 
 def sortVideos(catalog, size, algoritmo):
-    return model.sortBooks_byViews(catalog, size, algoritmo)
+    return model.sortVideos_byViews(catalog, size, algoritmo)
 
 
 # Funciones de consulta sobre el catálogo
