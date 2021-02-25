@@ -88,7 +88,7 @@ while True:
         print("-3 shell  ")
         print("-4 quick  ")
         print("-5 Merge \n ")
-        algoritmo = str(input())
+        algoritmo = int(input())
         vid =controller.sortVideos(catalog, size, algoritmo)
         print(vid)
         

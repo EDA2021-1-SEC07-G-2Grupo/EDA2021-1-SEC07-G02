@@ -34,6 +34,7 @@ from DISClib.Algorithms.Sorting import selectionsort as selc
 from DISClib.Algorithms.Sorting import quicksort as quic
 from DISClib.Algorithms.Sorting import mergesort as merg
 assert cf
+assert quic
 
 """
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
@@ -104,8 +105,9 @@ def cmpVideosByViews(video1, video2):
 # Funciones de ordenamiento
 
 def sortBooks_byViews(catalog, size, algoritmo):
-    sub_list = lt.subList(catalog["2"],0, size)
+    sub_list = lt.subList(catalog["Video"],1, size)
     sub_list = sub_list.copy()
+    algoritmo = int(algoritmo)
     start_time = time.process_time()
     if algoritmo==1:
         sorted_list = selec.sort(sub_list, cmpVideosByViews)
@@ -119,6 +121,6 @@ def sortBooks_byViews(catalog, size, algoritmo):
         sorted_list=merg.sort(sub_list, cmpVideosByViews)
     stop_time = time.process_time()
     elapsed_time_mseg = (stop_time - start_time)*1000  
-    return  sorted_list,elapsed_time_mseg
+    return  elapsed_time_mseg
     
 
