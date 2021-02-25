@@ -30,7 +30,7 @@ import time
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Sorting import insertionsort as inser
-from DISClib.Algorithms.Sorting import selectionsort as selc
+from DISClib.Algorithms.Sorting import selectionsort as selec
 from DISClib.Algorithms.Sorting import quicksort as quic
 from DISClib.Algorithms.Sorting import mergesort as merg
 assert cf
