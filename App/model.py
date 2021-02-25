@@ -31,6 +31,8 @@ from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Sorting import insertionsort as inser
 from DISClib.Algorithms.Sorting import selectionsort as selc
+from DISClib.Algorithms.Sorting import quicksort as quic
+from DISClib.Algorithms.Sorting import mergesort as merg
 assert cf
 
 """
@@ -89,6 +91,7 @@ def newVidcategoria(_id, category_id):
 
 # Funciones utilizadas para comparar elementos dentro de una list
 
+
 def cmpVideosByViews(video1, video2):
     """
     Devuelve verdadero (True) si los 'views' de video1 son menores que los del video2
@@ -108,8 +111,12 @@ def sortBooks_byViews(catalog, size, algoritmo):
         sorted_list = selec.sort(sub_list, cmpVideosByViews)
     elif algoritmo==2:
         sorted_list = inser.sort(sub_list, cmpVideosByViews)
-    else:
+    elif algoritmo==3:
         sorted_list = sa.sort(sub_list, cmpVideosByViews)
+    elif algoritmo==4:
+        sorted_list=quic.sort(sub_list, cmpVideosByViews)
+    elif algoritmo==5:
+        sorted_list=merg.sort(sub_list, cmpVideosByViews)
     stop_time = time.process_time()
     elapsed_time_mseg = (stop_time - start_time)*1000  
     return  sorted_list,elapsed_time_mseg
