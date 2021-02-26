@@ -95,7 +95,7 @@ while True:
             vid =controller.sortVideos(catalog, size, algoritmo)
             suma+=vid
             n+=1
-        print(vid)
+        print(suma/3)
         
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
