@@ -89,13 +89,11 @@ while True:
         print("-4 quick  ")
         print("-5 Merge \n ")
         algoritmo = int(input())
-        suma=0
-        n=0
-        while n<3:
-            vid =controller.sortVideos(catalog, size, algoritmo)
-            suma+=vid
-            n+=1
-        print(suma/3)
+        vid=controller.sortVideos(catalog, size, algoritmo)
+        print(vid)
+            
+            
+            
         
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
