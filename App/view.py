@@ -58,7 +58,7 @@ def loadData(catalog):
     """
     controller.loadData(catalog)
 
-
+    
 catalog = None
 
 
@@ -72,9 +72,17 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
         loadData(catalog)
-        print(lt.getElement(catalog["Video"], 1))
         print("Material audiovisual cargados: " + str(lt.size(catalog['Video'])))
-        print( "categorias cargadas: " + str(lt.size(catalog['video_id'])))
+        print("primer elemento de la lista:")
+        print(lt.firstElement(catalog["Video"]))
+        print( "Numero de categorias cargadas: " + str(lt.size(catalog['video_id'])))
+        print("Categorias cargadas:")
+        n=1
+        while n < lt.size(catalog['video_id']):
+            print(lt.getElement(catalog["video_id"],n))
+            n+=1
+
+       
         
 
     elif int(inputs[0]) == 2:
