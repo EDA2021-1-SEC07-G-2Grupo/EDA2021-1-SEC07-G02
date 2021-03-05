@@ -42,17 +42,14 @@ los mismos.
 """
 
 # Construccion de modelos
-def newCatalog(tipo_de_lista):
+def newCatalog():
     """
     Inicializa el catálogo de libros. Crea una lista vacia para guardar
     todos los libros, adicionalmente, crea una lista vacia para los autores,
     una lista vacia para los generos y una lista vacia para la asociación
     generos y libros. Retorna el catalogo inicializado.
     """
-    if tipo_de_lista==1:
-        lista=str("SINGLE_LINKED")
-    elif tipo_de_lista==2:
-        lista=str("ARRAY_LIST")
+    lista=str("ARRAY_LIST")
     catalog = {
                 "Video": None,
                 'video_id': None

@@ -45,11 +45,11 @@ def printMenu():
     print("0- Salir")
 
 
-def initCatalog(tipo_de_lista:int):
+def initCatalog():
     """
     Inicializa el catalogo de videos
     """
-    return controller.initCatalog(tipo_de_lista)
+    return controller.initCatalog()
 
 
 def loadData(catalog):
@@ -69,14 +69,13 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        print("Presione 1 si quiere cargar los datos representados en 'LINKED_LIST'  ")
-        print("Presione 2 si quiere cargar los datos representados en 'ARRAY_LIST'\n")
-        tipo_de_lista=int(input())
         print("Cargando información de los archivos ....")
-        catalog = initCatalog(tipo_de_lista)
+        catalog = initCatalog()
         loadData(catalog)
         print(lt.getElement(catalog["Video"], 1))
         print("Material audiovisual cargados: " + str(lt.size(catalog['Video'])))
+        print( "categorias cargadas: " + str(lt.size(catalog['video_id'])))
+        
 
     elif int(inputs[0]) == 2:
        #pais = input("Nombre del país que desea consultar: ")
@@ -91,10 +90,7 @@ while True:
         algoritmo = int(input())
         vid=controller.sortVideos(catalog, size, algoritmo)
         print(vid)
-            
-            
-            
-        
+ 
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
         video = controller.getTrendingVideo(catalog, pais) #Hay que hacer la función controller.getTrendingVideo
