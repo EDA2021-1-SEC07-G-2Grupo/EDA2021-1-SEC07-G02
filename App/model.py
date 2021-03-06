@@ -86,6 +86,17 @@ def newVidcategoria(_id, category_id):
 
 
 # Funciones de consulta
+def getvideobycountry(catalog, pais):
+    posicion_pais = lt.isPresent(catalog['country'], pais)
+    if posicion_pais > 0:
+        country = lt.getElement(catalog['country'], posicion_pais)
+        return country
+    return None
+def GetVideosbycategoria(catalog, categoria):
+    posicion_categoria = lt.isPresent(catalog['category_id'], categoria)
+    if posicion_categoria > 0:
+        categoriaa = lt.getElement(catalog['category_id'], categoria)
+        return categoriaa
 
 # Funciones utilizadas para comparar elementos dentro de una list
 def cmpvideos(vid1,vid2):
@@ -108,21 +119,11 @@ def cmpVideosByViews(video1, video2):
 
 # Funciones de ordenamiento
 
-def sortVideos_byViews(catalog, size, algoritmo):
+def sortVideos_byViews(catalog, size):
     sub_list = lt.subList(catalog["Video"],1, size)
     sub_list = sub_list.copy()
-    algoritmo = int(algoritmo)
     start_time = time.process_time()
-    if algoritmo==1:
-        sorted_list = selec.sort(sub_list, cmpVideosByViews)
-    elif algoritmo==2:
-        sorted_list = inser.sort(sub_list, cmpVideosByViews)
-    elif algoritmo==3:
-        sorted_list = sa.sort(sub_list, cmpVideosByViews)
-    elif algoritmo==4:
-        sorted_list=quic.sort(sub_list, cmpVideosByViews)
-    elif algoritmo==5:
-        sorted_list=merg.sort(sub_list, cmpVideosByViews)
+    sorted_list=merg.sort(sub_list, cmpVideosByViews)
     stop_time = time.process_time()
     elapsed_time_mseg = (stop_time - start_time)*1000  
     return  elapsed_time_mseg
