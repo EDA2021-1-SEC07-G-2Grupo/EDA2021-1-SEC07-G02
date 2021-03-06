@@ -83,9 +83,9 @@ while True:
             print(lt.getElement(catalog["video_id"],n))
             n+=1
     elif int(inputs[0]) == 2:
-        pais = input("Nombre del país que desea consultar: ")
-        categoria = input("La categoría de los videos: ")
-        size = int(input("Numero de videos que desea consultar: "))
+        pais = input("Escriba el nombre del país que desea consultar (ingles): ")
+        categoria = int(input("Escriba el numero de la categoría a consultar: "))
+        size = int(input("Escriba el Numero de videos que desea consultar: "))
         vid=controller.sortVideos(catalog, size, 5)
         print(vid)
  
