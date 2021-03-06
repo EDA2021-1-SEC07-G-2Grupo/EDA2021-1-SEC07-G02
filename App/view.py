@@ -58,6 +58,7 @@ def loadData(catalog):
     """
     controller.loadData(catalog)
 
+
     
 catalog = None
 
@@ -81,22 +82,11 @@ while True:
         while n < lt.size(catalog['video_id']):
             print(lt.getElement(catalog["video_id"],n))
             n+=1
-
-       
-        
-
     elif int(inputs[0]) == 2:
-       #pais = input("Nombre del país que desea consultar: ")
-        #categoria = input("La categoría de los videos: ")
+        pais = input("Nombre del país que desea consultar: ")
+        categoria = input("La categoría de los videos: ")
         size = int(input("Numero de videos que desea consultar: "))
-        print("Qué algoritmo de ordenamiento desea utilizar: ")
-        print("-1 selection ")
-        print("-2 insertion ")
-        print("-3 shell  ")
-        print("-4 quick  ")
-        print("-5 Merge \n ")
-        algoritmo = int(input())
-        vid=controller.sortVideos(catalog, size, algoritmo)
+        vid=controller.sortVideos(catalog, size, 5)
         print(vid)
  
     elif int(inputs[0]) == 3:
