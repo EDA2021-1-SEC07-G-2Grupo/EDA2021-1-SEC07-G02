@@ -88,12 +88,14 @@ def newVidcategoria(_id, category_id):
 # Funciones de consulta
 def getvideobycountry(catalog, pais):
     Country_list = lt.newList()
+    Country_list["key"]="ARRAY_LIST"
     n=0
     while n < lt.size(catalog):
           video=lt.getElement(catalog,n)
           if video["country"]==pais:
               lt.addLast(Country_list, video) 
           n+=1
+    
     return Country_list
     
 def GetVideosbycategoria(catalog, categoria):
@@ -104,7 +106,7 @@ def GetVideosbycategoria(catalog, categoria):
           if video["category_id"]==categoria:
               lt.addLast(vid_categ, video) 
           n+=1
-    print(vid_categ)
+    
     return vid_categ
 
 # Funciones utilizadas para comparar elementos dentro de una list
@@ -129,7 +131,7 @@ def cmpVideosByViews(video1, video2):
 # Funciones de ordenamiento
 
 def sortVideos_byViews(catalog, size):
-    sub_list = lt.subList(catalog["Video"],1, size)
+    sub_list = lt.subList(catalog,1, size)
     sub_list = sub_list.copy()
     start_time = time.process_time()
     sorted_list=merg.sort(sub_list, cmpVideosByViews)

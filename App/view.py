@@ -100,11 +100,13 @@ while True:
     elif int(inputs[0]) == 2:
         pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
         categoria = int(input("Escriba el numero de la categoría a consultar: "))
+        categoria=str(categoria)
         size = int(input("Escriba el Numero de videos que desea consultar: "))
         catalogo=catalog["Video"]
         country=controller.getvideobycountry(catalogo, pais)
         categ= controller.GetVideosbycategoria(country, categoria)
-        #video_ordenados_por_vistas=controller.sortVideos(categ, size)
+        video_ordenados_por_vistas=controller.sortVideos(categ, size)
+        print (video_ordenados_por_vistas)
         
  
     elif int(inputs[0]) == 3:
