@@ -87,17 +87,25 @@ def newVidcategoria(_id, category_id):
 
 # Funciones de consulta
 def getvideobycountry(catalog, pais):
+    Country_list = lt.newList()
+    n=0
+    while n < lt.size(catalog):
+          video=lt.getElement(catalog,n)
+          if video["country"]==pais:
+              lt.addLast(Country_list, video) 
+          n+=1
+    return Country_list
     
-    posicion_pais = lt.isPresent(catalog['country'], pais)
-    if posicion_pais > 0:
-        country = lt.getElement(catalog['country'], posicion_pais)
-        return country
-    return None
 def GetVideosbycategoria(catalog, categoria):
-    posicion_categoria = lt.isPresent(catalog['category_id'], categoria)
-    if posicion_categoria > 0:
-        categoriaa = lt.getElement(catalog['category_id'], categoria)
-        return categoriaa
+    vid_categ = lt.newList()
+    n=0
+    while n < lt.size(catalog):
+          video=lt.getElement(catalog,n)
+          if video["category_id"]==categoria:
+              lt.addLast(vid_categ, video) 
+          n+=1
+    print(vid_categ)
+    return vid_categ
 
 # Funciones utilizadas para comparar elementos dentro de una list
 def cmpvideos(vid1,vid2):
