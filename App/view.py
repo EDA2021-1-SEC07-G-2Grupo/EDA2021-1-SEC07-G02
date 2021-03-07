@@ -59,6 +59,10 @@ def loadData(catalog):
     controller.loadData(catalog)
 
 
+def separador():
+    return("-------------------------------------------------------------------------")    
+
+
     
 catalog = None
 
@@ -73,22 +77,36 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
         loadData(catalog)
+        print(separador())
         print("Material audiovisual cargados: " + str(lt.size(catalog['Video'])))
-        print("primer elemento de la lista:")
-        print(catalog["Video"])
+        print(separador())
+        print("Primer elemento de la lista:")
+        Primer_elemento=lt.firstElement(catalog["Video"])
+        print(" -Title: "+str(Primer_elemento["title"]))
+        print(" -Channel title: "+str(Primer_elemento["channel_title"]))
+        print(" -Trending Date: "+str(Primer_elemento["trending_date"]))
+        print(" -Country: "+str(Primer_elemento["country"]))
+        print(" -Views: "+str(Primer_elemento["views"]))
+        print(" -Likes: "+str(Primer_elemento["likes"]))
+        print(" -Dislikes "+str(Primer_elemento["dislikes"]))
+        print(separador())
         print( "Numero de categorias cargadas: " + str(lt.size(catalog['video_id'])))
-        print("Categorias cargadas:")
+        print("Categorias cargadas:") 
         n=1
         while n < lt.size(catalog['video_id']):
             print(lt.getElement(catalog["video_id"],n))
             n+=1
+        print(separador())
     elif int(inputs[0]) == 2:
         pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
         categoria = int(input("Escriba el numero de la categoría a consultar: "))
         size = int(input("Escriba el Numero de videos que desea consultar: "))
-        country = controller.getvideobycountry(catalog["Video"], pais)
-        categ= controller.GetVideosbycategoria(country, categoria)
-        video_ordenados_por_vistas=controller.sortVideos(country, size, 5)
+        videos=catalog["Video"]
+        for char in videos:
+            linea= videos[char]
+            country = controller.getvideobycountry(linea, pais)
+            categ= controller.GetVideosbycategoria(country, categoria)
+            video_ordenados_por_vistas=controller.sortVideos(country, size, 5)
         print(video_ordenados_por_vistas)
  
     elif int(inputs[0]) == 3:

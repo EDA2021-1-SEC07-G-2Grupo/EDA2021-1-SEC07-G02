@@ -87,6 +87,7 @@ def newVidcategoria(_id, category_id):
 
 # Funciones de consulta
 def getvideobycountry(catalog, pais):
+    
     posicion_pais = lt.isPresent(catalog['country'], pais)
     if posicion_pais > 0:
         country = lt.getElement(catalog['country'], posicion_pais)
