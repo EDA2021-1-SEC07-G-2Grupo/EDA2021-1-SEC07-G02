@@ -75,7 +75,7 @@ while True:
         loadData(catalog)
         print("Material audiovisual cargados: " + str(lt.size(catalog['Video'])))
         print("primer elemento de la lista:")
-        print(lt.firstElement(catalog["Video"]))
+        print(catalog["Video"])
         print( "Numero de categorias cargadas: " + str(lt.size(catalog['video_id'])))
         print("Categorias cargadas:")
         n=1
@@ -83,7 +83,7 @@ while True:
             print(lt.getElement(catalog["video_id"],n))
             n+=1
     elif int(inputs[0]) == 2:
-        pais = input("Escriba el nombre del país que desea consultar (ingles): ")
+        pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
         categoria = int(input("Escriba el numero de la categoría a consultar: "))
         size = int(input("Escriba el Numero de videos que desea consultar: "))
         country = controller.getvideobycountry(catalog["Video"], pais)
@@ -97,7 +97,7 @@ while True:
         printTrendingVideo(video)
 
     elif int(inputs[0]) == 4:
-        category_name = input("Categoría a buscar: ")
+        category_name = int (input("Escriba el numero de la categoría que quiere consultar: "))
         video_categoría = controller.countTrendingByTags(catalog, category_name) #Hay que hacer la función controller.countTrendingByTags
         printTrendingByTags(video_categoría)
 
