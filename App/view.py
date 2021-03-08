@@ -99,33 +99,36 @@ while True:
         print(separador())
     elif int(inputs[0]) == 2:
         pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
-        categoria = int(input("Escriba el numero de la categoría a consultar: "))
-        categoria=str(categoria)
-        size = int(input("Escriba el Numero de videos que desea consultar: "))
-        print(separador())
         catalogo=catalog["Video"]
         country=controller.getvideobycountry(catalogo, pais)
-        categ= controller.GetVideosbycategoria(country, categoria)
-        video_ordenados_por_vistas=controller.sortVideos(categ, size)
-        print(separador())
-        print("-"+"País: "+pais)
-        if lt.size(video_ordenados_por_vistas)!=0:
-            n=0
-            while n<lt.size(video_ordenados_por_vistas):
-                video_ordenado=lt.getElement(video_ordenados_por_vistas,n)
-                print("Posición: "+str(1+n))
-                print("-"+"Trending_date: "+video_ordenado["trending_date"])
-                print("-"+"Title: "+video_ordenado["title"])
-                print("-"+"Chanel_title: "+video_ordenado["channel_title"])
-                print("-"+"Publish_time: "+video_ordenado["publish_time"])
-                print("-"+"Views: "+video_ordenado["views"])
-                print("-"+"Likes: "+video_ordenado["likes"])
-                print("-"+"Dislikes: "+video_ordenado["dislikes"])
-                print(separador())
-                n+=1
+        if lt.size(country)==0 :
+            print("No se ha encontrado videos del país que ha escrito")
+            print(separador())
         else:
-            print("No hay Videos de en la categoría consultada")
- 
+            categoria = int(input("Escriba el numero de la categoría a consultar: "))
+            categoria=str(categoria)
+            categ= controller.GetVideosbycategoria(country, categoria)
+            if lt.size(categ)==0:
+                print("No se ha encontrado videos de "+pais+" en al categoría "+ categoria)
+                print(separador())
+            else:
+                size = int(input("Escriba el Numero de videos que desea consultar: "))       
+                video_ordenados_por_vistas=controller.sortVideos(categ, size)
+                print(separador())
+                print("-"+"País: "+pais)
+                n=0
+                while n<lt.size(video_ordenados_por_vistas):
+                    video_ordenado=lt.getElement(video_ordenados_por_vistas,n)
+                    print("Posición: "+str(1+n))
+                    print("-"+"Trending_date: "+video_ordenado["trending_date"])
+                    print("-"+"Title: "+video_ordenado["title"])
+                    print("-"+"Chanel_title: "+video_ordenado["channel_title"])
+                    print("-"+"Publish_time: "+video_ordenado["publish_time"])
+                    print("-"+"Views: "+video_ordenado["views"])
+                    print("-"+"Likes: "+video_ordenado["likes"])
+                    print("-"+"Dislikes: "+video_ordenado["dislikes"])
+                    print(separador())
+                    n+=1
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
         video = controller.getTrendingVideo(catalog, pais) #Hay que hacer la función controller.getTrendingVideo
