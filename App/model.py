@@ -126,17 +126,14 @@ def cmpVideosByViews(video1, video2):
     video1: informacion del primer video que incluye su valor 'views'
     video2: informacion del segundo video que incluye su valor 'views'
     """
-    return (float(video1['views']) < float(video2['views']))
+    return (float(video1['views']) > float(video2['views']))
 
 # Funciones de ordenamiento
 
 def sortVideos_byViews(catalog, size):
     sub_list = lt.subList(catalog,1, size)
     sub_list = sub_list.copy()
-    start_time = time.process_time()
     sorted_list=merg.sort(sub_list, cmpVideosByViews)
-    stop_time = time.process_time()
-    elapsed_time_mseg = (stop_time - start_time)*1000  
-    return  elapsed_time_mseg
+    return  sorted_list
     
 
