@@ -108,11 +108,12 @@ while True:
         categ= controller.GetVideosbycategoria(country, categoria)
         video_ordenados_por_vistas=controller.sortVideos(categ, size)
         print(separador())
+        print("-"+"País: "+pais)
         if lt.size(video_ordenados_por_vistas)!=0:
             n=0
             while n<lt.size(video_ordenados_por_vistas):
                 video_ordenado=lt.getElement(video_ordenados_por_vistas,n)
-                print(n)
+                print("Posición: "+str(1+n))
                 print("-"+"Trending_date: "+video_ordenado["trending_date"])
                 print("-"+"Title: "+video_ordenado["title"])
                 print("-"+"Chanel_title: "+video_ordenado["channel_title"])
@@ -123,7 +124,7 @@ while True:
                 print(separador())
                 n+=1
         else:
-            print("No hay")
+            print("No hay Videos de en la categoría consultada")
  
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
@@ -132,9 +133,12 @@ while True:
 
     elif int(inputs[0]) == 4:
         category_name = int (input("Escriba el numero de la categoría que quiere consultar: "))
-        video_categoría = controller.countTrendingByTags(catalog, category_name) #Hay que hacer la función controller.countTrendingByTags
-        printTrendingByTags(video_categoría)
-
+        category_name=str(category_name)
+        video_categoria = controller.GetVideosbycategoria(catalog["Video"], category_name)
+        video_por_dias= controller.Get_rending_categoria(video_categoria)
+        print(video_por_dias) 
+        #ordenar_lista=controller.sortVideos_byDias(video_por_dias)
+        #print(ordenar_lista)
     elif int(inputs[0]) == 5:
         label = input("Etiqueta a buscar: ")
         book_count = controller.countBooksByTag(catalog, label) #TOCA VER COMO SE HACE ESTA COSA

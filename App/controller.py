@@ -87,3 +87,7 @@ def getvideobycountry (catalog, pais):
     return model.getvideobycountry(catalog, pais)
 def GetVideosbycategoria(catalog, categoria):
     return model.GetVideosbycategoria(catalog,categoria)
+def Get_rending_categoria(catalog):
+    return model.Get_rending_categoria(catalog)
+def sortVideos_byDias(catalog):
+    return model.sortVideos_byDias(catalog)
