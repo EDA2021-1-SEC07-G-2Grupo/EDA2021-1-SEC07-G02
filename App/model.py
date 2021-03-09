@@ -107,6 +107,17 @@ def GetVideosbycategoria(catalog, categoria):
               lt.addLast(vid_categ, video) 
           n+=1  
     return vid_categ
+def video_por_etiqueta(catalog, label):
+    vid_label = lt.newList()
+    n=0
+    while n < lt.size(catalog):
+          video=lt.getElement(catalog,n)
+          if label in video["tags"]:
+              lt.addLast(vid_label, video) 
+          n+=1  
+    return vid_label
+
+    
 def Get_rending_categoria(catalog):
     trending_dates= lt.newList()
     n=0
@@ -115,12 +126,12 @@ def Get_rending_categoria(catalog):
           ID=video["video_id"]
           precencia=lt.isPresent(trending_dates,ID)
           if precencia==0:
-              datos={"ID":ID, "Dias":1}  
+              datos={"ID":ID, "Dias":"1"}  
               lt.addLast(trending_dates,datos)
-              #trending_dates[ID]=1  
-          #else:  
+              trending_dates["Dias"]=1  
+         #else:  
               #otro_video=lt.getElement(trending_dates,precencia)
-              #trending_dates[otro_video]+=1
+              #trending_dates[otro_video]+=1"""
           n+=1 
     return trending_dates
 
@@ -142,11 +153,17 @@ def cmpVideosByViews(video1, video2):
     video2: informacion del segundo video que incluye su valor 'views'
     """
     return (float(video1['views']) > float(video2['views']))
+
+
+
 def cmpVideosBydias(vid1, vid2):
-    print(vid1)
-    print(vid2)
+    
     return (float(vid1) > float(vid2))
 
+def cmpVideosByLikes(video1, video2):
+    """
+    """
+    return (float(video1['likes']) > float(video2['likes']))
 
 # Funciones de ordenamiento
 
@@ -161,5 +178,9 @@ def sortVideos_byDias(catalog):
     sub_list = sub_list.copy()
     sorted_list=merg.sort(sub_list, cmpVideosBydias)
     return  sorted_list
-    
+def videos_por_likes(catalog,size):
+    sub_list = lt.subList(catalog,1, size)
+    sub_list = sub_list.copy()
+    sorted_list=merg.sort(sub_list, cmpVideosByLikes)
+    return  sorted_list
 

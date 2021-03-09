@@ -41,7 +41,7 @@ def printMenu():
     print("2- Consultar n numero de videos más vistos por país y en una categoria especifica(categoria, pais, numero de videos)")
     print("3- Consultar el video más trending por país(pais)")
     print("4- Consultar el video más trending por categoría (categoría)")
-    print("5- Consultar los n videos con más likes por categoría")
+    print("5- Consultar los n videos con más likes por 'tag' de acuerdo a un país especifico")
     print("0- Salir")
 
 
@@ -136,17 +136,46 @@ while True:
 
     elif int(inputs[0]) == 4:
         category_name = int (input("Escriba el numero de la categoría que quiere consultar: "))
+        print(separador())
         category_name=str(category_name)
         video_categoria = controller.GetVideosbycategoria(catalog["Video"], category_name)
-        video_por_dias= controller.Get_rending_categoria(video_categoria)
-        print(video_por_dias) 
+        if lt.size(video_categoria)==0:
+            print(separador())
+            print("No se ha encontrado videos en la categoría "+category_name)
+            print(separador())
+        else:
+            video_por_dias= controller.Get_rending_categoria(video_categoria)
+            print(lt.getElement(video_por_dias,0))
+        
         #ordenar_lista=controller.sortVideos_byDias(video_por_dias)
         #print(ordenar_lista)
     elif int(inputs[0]) == 5:
-        label = input("Etiqueta a buscar: ")
-        book_count = controller.countBooksByTag(catalog, label) #TOCA VER COMO SE HACE ESTA COSA
-        print('Se encontraron: ', book_count, ' Libros')
-
+         pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
+         print(separador())
+         catalogo=catalog["Video"]
+         country=controller.getvideobycountry(catalogo, pais)
+         if lt.size(country)==0 :
+            print("No se ha encontrado videos del país que ha escrito")
+            print(separador())
+         else:
+             label = str(input("Etiqueta a buscar: "))
+             videos_etiquetados=controller.video_por_etiqueta(country,label)
+             if lt.size(videos_etiquetados)==0:
+                 Print("no se ha encontrado un video con la etiqueta"+ label)
+             else:
+                 size=int(input("Escriba la cantidad de videos que desea consultar "))
+                 print(separador())
+                 video_por_likes=controller.videos_por_likes(videos_etiquetados, size)
+                 while lt.size(video_por_likes)>n:
+                        vid=lt.getElement(video_por_likes,n)
+                        print("-"+"Trending_date: "+vid["trending_date"])
+                        print("-"+"Title: "+vid["title"])
+                        print("-"+"Chanel_title: "+vid["channel_title"])
+                        print("-"+"Publish_time: "+vid["publish_time"])
+                        print("-"+"Likes: "+vid["likes"])
+                        print("-"+"Dislikes: "+vid["dislikes"])
+                        print("-"+"Tags: "+vid["tags"])
+                        n+=1
     else:
         sys.exit(0)
 sys.exit(0)

@@ -91,3 +91,7 @@ def Get_rending_categoria(catalog):
     return model.Get_rending_categoria(catalog)
 def sortVideos_byDias(catalog):
     return model.sortVideos_byDias(catalog)
+def video_por_etiqueta(catalog,label):
+    return model.video_por_etiqueta(catalog,label)
+def videos_por_likes(catalog,size):
+    return model.videos_por_likes(catalog,size)
