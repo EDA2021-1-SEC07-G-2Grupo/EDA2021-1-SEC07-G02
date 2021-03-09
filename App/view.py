@@ -63,10 +63,51 @@ def separador():
     return("-------------------------------------------------------------------------")    
 
 
-    
+
+def print_primero_de_lista(Primer_elemento):
+    print(" -Title: "+str(Primer_elemento["title"]))
+    print(" -Channel title: "+str(Primer_elemento["channel_title"]))
+    print(" -Trending Date: "+str(Primer_elemento["trending_date"]))
+    print(" -Country: "+str(Primer_elemento["country"]))
+    print(" -Views: "+str(Primer_elemento["views"]))
+    print(" -Likes: "+str(Primer_elemento["likes"]))
+    print(" -Dislikes "+str(Primer_elemento["dislikes"]))
+
+
+def print_todo_elemento(catalog)->None:
+    n=1
+    while n < lt.size(catalog):
+          print(lt.getElement(catalog,n))
+          n+=1
+     n=0
+     while n<lt.size(video_ordenados_por_vistas):
+            video_ordenado=lt.getElement(catalog,n)
+            print("Posición: "+str(1+n))
+            print("-"+"Trending_date: "+video_ordenado["trending_date"])
+            print("-"+"Title: "+video_ordenado["title"])
+            print("-"+"Chanel_title: "+video_ordenado["channel_title"])
+            print("-"+"Publish_time: "+video_ordenado["publish_time"])
+            print("-"+"Views: "+video_ordenado["views"])
+            print("-"+"Likes: "+video_ordenado["likes"])
+            print("-"+"Dislikes: "+video_ordenado["dislikes"])
+            print(separador())
+            n+=1
+def print_req4(catalog):
+    n=0
+    while lt.size(video_por_likes)>n:
+            vid=lt.getElement(video_por_likes,n)
+            print("Video "+str(n+1))
+            print("-"+"Title: "+vid["title"])
+            print("-"+"Chanel_title: "+vid["channel_title"])
+            print("-"+"Publish_time: "+vid["publish_time"])
+            print("-"+"Likes: "+vid["likes"])
+            print("-"+"Dislikes: "+vid["dislikes"])
+            print("-"+"Tags: "+vid["tags"])
+            print(separador())
+            n+=1
+
+
 catalog = None
-
-
 """
 Menu principal
 """
@@ -82,20 +123,11 @@ while True:
         print(separador())
         print("Primer elemento de la lista:")
         Primer_elemento=lt.firstElement(catalog["Video"])
-        print(" -Title: "+str(Primer_elemento["title"]))
-        print(" -Channel title: "+str(Primer_elemento["channel_title"]))
-        print(" -Trending Date: "+str(Primer_elemento["trending_date"]))
-        print(" -Country: "+str(Primer_elemento["country"]))
-        print(" -Views: "+str(Primer_elemento["views"]))
-        print(" -Likes: "+str(Primer_elemento["likes"]))
-        print(" -Dislikes "+str(Primer_elemento["dislikes"]))
+        print_primero_de_lista(Primer_elemento)
         print(separador())
         print( "Numero de categorias cargadas: " + str(lt.size(catalog['video_id'])))
         print("Categorias cargadas:") 
-        n=1
-        while n < lt.size(catalog['video_id']):
-            print(lt.getElement(catalog["video_id"],n))
-            n+=1
+        print_todo_elemento(catalog["video_id"])
         print(separador())
     elif int(inputs[0]) == 2:
         pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
@@ -116,19 +148,8 @@ while True:
                 video_ordenados_por_vistas=controller.sortVideos(categ, size)
                 print(separador())
                 print("-"+"País: "+pais)
-                n=0
-                while n<lt.size(video_ordenados_por_vistas):
-                    video_ordenado=lt.getElement(video_ordenados_por_vistas,n)
-                    print("Posición: "+str(1+n))
-                    print("-"+"Trending_date: "+video_ordenado["trending_date"])
-                    print("-"+"Title: "+video_ordenado["title"])
-                    print("-"+"Chanel_title: "+video_ordenado["channel_title"])
-                    print("-"+"Publish_time: "+video_ordenado["publish_time"])
-                    print("-"+"Views: "+video_ordenado["views"])
-                    print("-"+"Likes: "+video_ordenado["likes"])
-                    print("-"+"Dislikes: "+video_ordenado["dislikes"])
-                    print(separador())
-                    n+=1
+                imprime_toda_lista_econtrada_req1(video_ordenados_por_vistas)
+               
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
         video = controller.getTrendingVideo(catalog, pais) #Hay que hacer la función controller.getTrendingVideo
@@ -163,21 +184,12 @@ while True:
              if lt.size(videos_etiquetados)==0:
                 print("no se ha encontrado un video con la etiqueta"+ label)
              else:
+                print("Se han encontrado un total de "+ str(lt.size(videos_etiquetados))+" videos con la etiqueta "+label+", por favor pida una cantidad de datos dentro del rango")
                 size=int(input("Escriba la cantidad de videos que desea consultar "))
                 print(separador())
                 video_por_likes=controller.videos_por_likes(videos_etiquetados, size)
-                n=0
-                while lt.size(video_por_likes)>n:
-                        vid=lt.getElement(video_por_likes,n)
-                        print("Video "+str(n+1))
-                        print("-"+"Title: "+vid["title"])
-                        print("-"+"Chanel_title: "+vid["channel_title"])
-                        print("-"+"Publish_time: "+vid["publish_time"])
-                        print("-"+"Likes: "+vid["likes"])
-                        print("-"+"Dislikes: "+vid["dislikes"])
-                        print("-"+"Tags: "+vid["tags"])
-                        print(separador())
-                        n+=1
+                print_req4(video_por_likes)
+                
     else:
         sys.exit(0)
 sys.exit(0)
