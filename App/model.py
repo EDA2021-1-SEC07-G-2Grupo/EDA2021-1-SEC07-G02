@@ -126,8 +126,7 @@ def Get_rending_categoria(catalog):
           ID=video["video_id"]
           precencia=lt.isPresent(trending_dates,ID)
           if precencia==0:
-              datos={"ID":ID, "Dias":"1"}  
-              lt.addLast(trending_dates,datos)
+              lt.addLast(trending_dates,video)
               trending_dates["Dias"]=1  
          #else:  
               #otro_video=lt.getElement(trending_dates,precencia)

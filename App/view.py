@@ -161,20 +161,22 @@ while True:
              label = str(input("Etiqueta a buscar: "))
              videos_etiquetados=controller.video_por_etiqueta(country,label)
              if lt.size(videos_etiquetados)==0:
-                 Print("no se ha encontrado un video con la etiqueta"+ label)
+                print("no se ha encontrado un video con la etiqueta"+ label)
              else:
-                 size=int(input("Escriba la cantidad de videos que desea consultar "))
-                 print(separador())
-                 video_por_likes=controller.videos_por_likes(videos_etiquetados, size)
-                 while lt.size(video_por_likes)>n:
+                size=int(input("Escriba la cantidad de videos que desea consultar "))
+                print(separador())
+                video_por_likes=controller.videos_por_likes(videos_etiquetados, size)
+                n=0
+                while lt.size(video_por_likes)>n:
                         vid=lt.getElement(video_por_likes,n)
-                        print("-"+"Trending_date: "+vid["trending_date"])
+                        print("Video "+str(n+1))
                         print("-"+"Title: "+vid["title"])
                         print("-"+"Chanel_title: "+vid["channel_title"])
                         print("-"+"Publish_time: "+vid["publish_time"])
                         print("-"+"Likes: "+vid["likes"])
                         print("-"+"Dislikes: "+vid["dislikes"])
                         print("-"+"Tags: "+vid["tags"])
+                        print(separador())
                         n+=1
     else:
         sys.exit(0)
