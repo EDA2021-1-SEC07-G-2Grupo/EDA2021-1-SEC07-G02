@@ -88,7 +88,6 @@ def newVidcategoria(_id, category_id):
 # Funciones de consulta
 def getvideobycountry(catalog, pais):
     Country_list = lt.newList()
-    Country_list["key"]="ARRAY_LIST"
     n=0
     while n < lt.size(catalog):
           video=lt.getElement(catalog,n)
@@ -131,18 +130,27 @@ def video_por_etiqueta(catalog, label):
     
 def Get_rending_categoria(catalog):
     trending_dates= lt.newList()
+    lista_prohibido=[]
     n=0
     while n < lt.size(catalog):
           video=lt.getElement(catalog,n)
           ID=video["video_id"]
-          precencia=lt.isPresent(trending_dates,ID)
-          if precencia==0:
-              lt.addLast(trending_dates,video)
-              trending_dates["Dias"]=1  
-         #else:  
-              #otro_video=lt.getElement(trending_dates,precencia)
-              #trending_dates[otro_video]+=1"""
-          n+=1 
+          if ID not in lista_prohibido:
+              dato={"ID": ID,"title":video["title"], "Channel title": video["channel_title"], "country":video["country"],"dias":1}
+              lt.addLast(trending_dates,dato)
+              lista_prohibido.append(ID)
+          else:
+               k=0
+               h=True
+               while k < lt.size(trending_dates) and h==True:
+                     vid=lt.getElement(trending_dates,k)
+                     if vid["ID"]==ID:
+                        vid["dias"]+=1
+                        h=False
+                     k+=1
+
+          n+=1  
+    
     return trending_dates
 
 def Get_trending_pais(catalog):
@@ -166,8 +174,7 @@ def cmpvideos(vid1,vid2):
     if (vid1.lower() in vid2['id'].lower()):
         return 0
     return -1
-def comparecategorynames(name, tag):
-    return (name == tag['name'])
+
 
     
 
@@ -190,6 +197,8 @@ def cmpVideosByLikes(video1, video2):
     """
     """
     return (float(video1['likes']) > float(video2['likes']))
+def comparecategorynames(name, tag):
+    return (name == tag['name'])
 
 # Funciones de ordenamiento
 
@@ -204,6 +213,8 @@ def sortVideos_byDias(catalog):
     sub_list = sub_list.copy()
     sorted_list=merg.sort(sub_list, cmpVideosBydias)
     return  sorted_list
+
+    
 def videos_por_likes(catalog,size):
     sub_list = lt.subList(catalog,1, size)
     sub_list = sub_list.copy()
