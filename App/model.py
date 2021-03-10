@@ -107,6 +107,17 @@ def GetVideosbycategoria(catalog, categoria):
               lt.addLast(vid_categ, video) 
           n+=1  
     return vid_categ
+
+def GetVideosbyCountry(catalog, pais):
+    vid_country = lt.newList()
+    n=0
+    while n < lt.size(catalog):
+          video=lt.getElement(catalog,n)
+          if video["country"]==pais:
+              lt.addLast(vid_categ, video) 
+          n+=1  
+    return vid_country
+
 def video_por_etiqueta(catalog, label):
     vid_label = lt.newList()
     n=0
@@ -132,6 +143,22 @@ def Get_rending_categoria(catalog):
               #otro_video=lt.getElement(trending_dates,precencia)
               #trending_dates[otro_video]+=1"""
           n+=1 
+    return trending_dates
+
+def Get_trending_pais(catalog):
+    trending_dates= lt.newList()
+    n=0
+    while n < lt.size(catalog):
+        video=lt.getElement(catalog,n)
+        pais=video["country"]
+        precencia=lt.isPresent(trending_dates, pais)
+        if precencia==0:
+            lt.addLast(trending_dates,video)
+            trending_dates["Dias"]=1  
+        else:  
+            otro_video=lt.getElement(trending_dates,precencia)
+            trending_dates[otro_video]+=1
+        n+=1 
     return trending_dates
 
 # Funciones utilizadas para comparar elementos dentro de una list

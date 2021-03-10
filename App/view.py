@@ -77,21 +77,23 @@ def print_primero_de_lista(Primer_elemento):
 def print_todo_elemento(catalog)->None:
     n=1
     while n < lt.size(catalog):
-          print(lt.getElement(catalog,n))
-          n+=1
-     n=0
-     while n<lt.size(video_ordenados_por_vistas):
-            video_ordenado=lt.getElement(catalog,n)
-            print("Posición: "+str(1+n))
-            print("-"+"Trending_date: "+video_ordenado["trending_date"])
-            print("-"+"Title: "+video_ordenado["title"])
-            print("-"+"Chanel_title: "+video_ordenado["channel_title"])
-            print("-"+"Publish_time: "+video_ordenado["publish_time"])
-            print("-"+"Views: "+video_ordenado["views"])
-            print("-"+"Likes: "+video_ordenado["likes"])
-            print("-"+"Dislikes: "+video_ordenado["dislikes"])
-            print(separador())
-            n+=1
+        print(lt.getElement(catalog,n))
+        n+=1
+    n=0
+    while n<lt.size(video_ordenados_por_vistas):
+        video_ordenado=lt.getElement(catalog,n)
+        print("Posición: "+str(1+n))
+        print("-"+"Trending_date: "+video_ordenado["trending_date"])
+        print("-"+"Title: "+video_ordenado["title"])
+        print("-"+"Chanel_title: "+video_ordenado["channel_title"])
+        print("-"+"Publish_time: "+video_ordenado["publish_time"])
+        print("-"+"Views: "+video_ordenado["views"])
+        print("-"+"Likes: "+video_ordenado["likes"])
+        print("-"+"Dislikes: "+video_ordenado["dislikes"])
+        print(separador())
+        n+=1
+
+
 def print_req4(catalog):
     n=0
     while lt.size(video_por_likes)>n:
@@ -151,9 +153,16 @@ while True:
                 imprime_toda_lista_econtrada_req1(video_ordenados_por_vistas)
                
     elif int(inputs[0]) == 3:
-        pais = input("Nombre del pais a consultar: ")
-        video = controller.getTrendingVideo(catalog, pais) #Hay que hacer la función controller.getTrendingVideo
-        printTrendingVideo(video)
+        pais = str(input("Nombre del pais a consultar: "))
+        print(separador())
+        video_pais = controller.GetVideosbyCountry(catalog["Video"], pais)
+        if lt.size(video_pais)==0:
+            print(separador())
+            print("No se ha encontrado videos en el pais " + pais)
+            print(separador())
+        else:
+            video_por_dias= controller.Get_trending_pais(video_pais)
+            print(lt.getElement(video_por_dias,0))
 
     elif int(inputs[0]) == 4:
         category_name = int (input("Escriba el numero de la categoría que quiere consultar: "))
