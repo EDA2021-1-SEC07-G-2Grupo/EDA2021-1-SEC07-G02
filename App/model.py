@@ -88,6 +88,7 @@ def newVidcategoria(_id, category_id):
 # Funciones de consulta
 def getvideobycountry(catalog, pais):
     Country_list = lt.newList()
+    Country_list["key"]="ARRAY_LIST"
     n=0
     while n < lt.size(catalog):
           video=lt.getElement(catalog,n)
