@@ -93,11 +93,20 @@ def imprime_toda_lista_econtrada_req1(catalog):
             print("-"+"Dislikes: "+video_ordenado["dislikes"])
             print(separador())
             n+=1
-def print_req3(catalog):
+
+def print_req2(catalog):
     vid=lt.getElement(catalog,1)
     print("-"+"Title: "+vid["title"])
     print("-"+"Channel title: "+vid["Channel title"])
     print("-"+"Country: "+vid["country"])
+    print("-"+"Días: "+str(vid["dias"]))
+    print(separador())
+
+def print_req3(catalog):
+    vid=lt.getElement(catalog,1)
+    print("-"+"Title: "+vid["title"])
+    print("-"+"Channel title: "+vid["Channel title"])
+    print("-"+"ID: "+vid["video_id"])
     print("-"+"Días: "+str(vid["dias"]))
     print(separador())
            
@@ -172,6 +181,7 @@ while True:
             print("No se ha encontrado videos en el pais " + pais)
             print(separador())
         else:
+            print(separador())
             video_por_dias= controller.Get_trending_pais(video_pais)
             print(lt.getElement(video_por_dias,0))
 
