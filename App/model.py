@@ -155,20 +155,31 @@ def Get_rending_categoria(catalog):
 
 def Get_trending_pais(catalog):
     trending_dates= lt.newList()
+    lista_prohibido=[]
     n=0
     while n < lt.size(catalog):
-        video=lt.getElement(catalog,n)
-        pais=video["country"]
-        precencia=lt.isPresent(trending_dates, pais)
-        if precencia==0:
-            lt.addLast(trending_dates,video)
-            trending_dates["Dias"]=1  
-        else:  
-            otro_video=lt.getElement(trending_dates,precencia)
-            trending_dates[otro_video]+=1
-        n+=1 
-    return trending_dates
+          video=lt.getElement(catalog,n)
+          ID=video["video_id"]
+          if ID not in lista_prohibido:
+              dato={"ID": ID,"title":video["title"], "Channel title": video["channel_title"], "country":video["country"],"dias":1}
+              lt.addLast(trending_dates,dato)
+              lista_prohibido.append(ID)
+          else:
+               k=0
+               h=True
+               while k < lt.size(trending_dates) and h==True:
+                     vid=lt.getElement(trending_dates,k)
+                     if vid["ID"]==ID:
+                        vid["dias"]+=1
+                        h=False
+                     k+=1
 
+          n+=1  
+    
+    return trending_dates
+   
+
+   
 # Funciones utilizadas para comparar elementos dentro de una list
 def cmpvideos(vid1,vid2):
     if (vid1.lower() in vid2['id'].lower()):
@@ -176,15 +187,9 @@ def cmpvideos(vid1,vid2):
     return -1
 
 
-    
 
 def cmpVideosByViews(video1, video2):
-    """
-    Devuelve verdadero (True) si los 'views' de video1 son menores que los del video2
-    Args:
-    video1: informacion del primer video que incluye su valor 'views'
-    video2: informacion del segundo video que incluye su valor 'views'
-    """
+
     return (float(video1['views']) > float(video2['views']))
 
 
@@ -196,7 +201,7 @@ def cmpVideosBydias(vid1, vid2):
 def cmpVideosByLikes(video1, video2):
 
     return (float(video1['likes']) > float(video2['likes']))
-    
+
 def comparecategorynames(name, tag):
     return (name == tag['name'])
 

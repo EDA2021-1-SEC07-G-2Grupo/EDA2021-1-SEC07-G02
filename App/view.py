@@ -106,7 +106,7 @@ def print_req3(catalog):
     vid=lt.getElement(catalog,1)
     print("-"+"Title: "+vid["title"])
     print("-"+"Channel title: "+vid["Channel title"])
-    print("-"+"ID: "+vid["video_id"])
+    print("-"+"Category ID "+vid["ID"])
     print("-"+"Días: "+str(vid["dias"]))
     print(separador())
            
@@ -152,7 +152,7 @@ while True:
     elif int(inputs[0]) == 2:
         pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
         catalogo=catalog["Video"]
-        country=controller.getvideobycountry(catalogo, pais)
+        country=controller.GetVideosbyCountry(catalogo, pais)
         if lt.size(country)==0 :
             print("No se ha encontrado videos del país que ha escrito")
             separador()
@@ -161,12 +161,14 @@ while True:
             categoria=str(categoria)
             categ= controller.GetVideosbycategoria(country, categoria)
             if lt.size(categ)==0:
+                separador()
                 print("No se ha encontrado videos de "+pais+" en al categoría "+ categoria)
                 separador()
             else:
                 size = int(input("Escriba el Numero de videos que desea consultar: "))       
                 video_ordenados_por_vistas=controller.sortVideos(categ, size)
-                separador()
+                print(lt.size(video_ordenados_por_vistas))
+                print(separador())
                 print("-"+"País: "+pais)
                 imprime_toda_lista_econtrada_req1(video_ordenados_por_vistas)
 
@@ -183,7 +185,7 @@ while True:
         else:
             print(separador())
             video_por_dias= controller.Get_trending_pais(video_pais)
-            print(lt.getElement(video_por_dias,0))
+            print_req2(video_por_dias)
 
     elif int(inputs[0]) == 4:
         category_name = int (input("Escriba el numero de la categoría que quiere consultar: "))
@@ -212,7 +214,7 @@ while True:
              label = str(input("Etiqueta a buscar: "))
              videos_etiquetados=controller.video_por_etiqueta(country,label)
              if lt.size(videos_etiquetados)==0:
-                print("no se ha encontrado un video con la etiqueta"+ label)
+                print("no se ha encontrado un video con la etiqueta "+ label)
              else:
                 print("Se han encontrado un total de "+ str(lt.size(videos_etiquetados))+" videos con la etiqueta "+label+", por favor pida una cantidad de datos dentro del rango")
                 size=int(input("Escriba la cantidad de videos que desea consultar "))
