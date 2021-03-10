@@ -194,9 +194,9 @@ def cmpVideosBydias(vid1, vid2):
     return (float(vid1) > float(vid2))
 
 def cmpVideosByLikes(video1, video2):
-    """
-    """
+
     return (float(video1['likes']) > float(video2['likes']))
+    
 def comparecategorynames(name, tag):
     return (name == tag['name'])
 

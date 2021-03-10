@@ -85,6 +85,7 @@ def sortVideos(catalog, size):
 
 def GetVideosbyCountry (catalog, pais):
     return model.getvideobycountry(catalog, pais)
+    
 def Get_trending_pais(catalog):
     return model.Get_trending_pais(catalog)
 def GetVideosbycategoria(catalog, categoria):
