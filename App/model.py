@@ -107,6 +107,8 @@ def GetVideosbycategoria(catalog, categoria):
               lt.addLast(vid_categ, video) 
           n+=1  
     return vid_categ
+
+
 def video_por_etiqueta(catalog, label):
     vid_label = lt.newList()
     n=0
@@ -120,18 +122,27 @@ def video_por_etiqueta(catalog, label):
     
 def Get_rending_categoria(catalog):
     trending_dates= lt.newList()
+    lista_prohibido=[]
     n=0
     while n < lt.size(catalog):
           video=lt.getElement(catalog,n)
           ID=video["video_id"]
-          precencia=lt.isPresent(trending_dates,ID)
-          if precencia==0:
-              lt.addLast(trending_dates,video)
-              trending_dates["Dias"]=1  
-         #else:  
-              #otro_video=lt.getElement(trending_dates,precencia)
-              #trending_dates[otro_video]+=1"""
-          n+=1 
+          if ID not in lista_prohibido:
+              dato={"ID": ID,"title":video["title"], "Channel title": video["channel_title"], "country":video["country"],"dias":1}
+              lt.addLast(trending_dates,dato)
+              lista_prohibido.append(ID)
+          else:
+               k=0
+               h=True
+               while k < lt.size(trending_dates) and h==True:
+                     vid=lt.getElement(trending_dates,k)
+                     if vid["ID"]==ID:
+                        vid["dias"]+=1
+                        h=False
+                     k+=1
+
+          n+=1  
+    
     return trending_dates
 
 # Funciones utilizadas para comparar elementos dentro de una list
@@ -157,7 +168,7 @@ def cmpVideosByViews(video1, video2):
 
 def cmpVideosBydias(vid1, vid2):
     
-    return (float(vid1) > float(vid2))
+    return (float(vid1) < float(vid2))
 
 def cmpVideosByLikes(video1, video2):
     """

@@ -79,6 +79,7 @@ def print_todo_elemento(catalog)->None:
     while n < lt.size(catalog):
           print(lt.getElement(catalog,n))
           n+=1
+def imprime_toda_lista_econtrada_req1(catalog):
      n=0
      while n<lt.size(video_ordenados_por_vistas):
             video_ordenado=lt.getElement(catalog,n)
@@ -92,6 +93,14 @@ def print_todo_elemento(catalog)->None:
             print("-"+"Dislikes: "+video_ordenado["dislikes"])
             print(separador())
             n+=1
+def print_req3(catalog):
+    vid=lt.getElement(catalog,1)
+    print("-"+"Title: "+vid["title"])
+    print("-"+"Channel title: "+vid["Channel title"])
+    print("-"+"Country: "+vid["country"])
+    print("-"+"Días: "+str(vid["dias"]))
+    print(separador())
+           
 def print_req4(catalog):
     n=0
     while lt.size(video_por_likes)>n:
@@ -165,11 +174,11 @@ while True:
             print("No se ha encontrado videos en la categoría "+category_name)
             print(separador())
         else:
+            separador()
             video_por_dias= controller.Get_rending_categoria(video_categoria)
-            print(lt.getElement(video_por_dias,0))
-        
-        #ordenar_lista=controller.sortVideos_byDias(video_por_dias)
-        #print(ordenar_lista)
+            Primero_por_categoria=controller.sortVideos_byDias(video_por_dias)
+            print_req3(Primero_por_categoria)
+
     elif int(inputs[0]) == 5:
          pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
          print(separador())
