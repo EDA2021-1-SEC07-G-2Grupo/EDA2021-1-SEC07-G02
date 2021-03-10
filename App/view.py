@@ -146,18 +146,18 @@ while True:
         country=controller.getvideobycountry(catalogo, pais)
         if lt.size(country)==0 :
             print("No se ha encontrado videos del país que ha escrito")
-            print(separador())
+            separador()
         else:
             categoria = int(input("Escriba el numero de la categoría a consultar: "))
             categoria=str(categoria)
             categ= controller.GetVideosbycategoria(country, categoria)
             if lt.size(categ)==0:
                 print("No se ha encontrado videos de "+pais+" en al categoría "+ categoria)
-                print(separador())
+                separador()
             else:
                 size = int(input("Escriba el Numero de videos que desea consultar: "))       
                 video_ordenados_por_vistas=controller.sortVideos(categ, size)
-                print(separador())
+                separador()
                 print("-"+"País: "+pais)
                 imprime_toda_lista_econtrada_req1(video_ordenados_por_vistas)
 
@@ -194,7 +194,7 @@ while True:
          pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
          print(separador())
          catalogo=catalog["Video"]
-         country=controller.getvideobycountry(catalogo, pais)
+         country=controller.GetVideosbyCountry(catalogo, pais)
          if lt.size(country)==0 :
             print("No se ha encontrado videos del país que ha escrito")
             print(separador())
