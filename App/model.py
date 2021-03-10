@@ -88,7 +88,6 @@ def newVidcategoria(_id, category_id):
 # Funciones de consulta
 def getvideobycountry(catalog, pais):
     Country_list = lt.newList()
-    Country_list["key"]="ARRAY_LIST"
     n=0
     while n < lt.size(catalog):
           video=lt.getElement(catalog,n)
@@ -167,12 +166,14 @@ def cmpVideosByViews(video1, video2):
 
 def cmpVideosBydias(vid1, vid2):
     
-    return (float(vid1) < float(vid2))
+    return (float(vid1) > float(vid2))
 
 def cmpVideosByLikes(video1, video2):
     """
     """
     return (float(video1['likes']) > float(video2['likes']))
+def comparecategorynames(name, tag):
+    return (name == tag['name'])
 
 # Funciones de ordenamiento
 
