@@ -149,8 +149,7 @@ def cmpvideos(vid1,vid2):
     if (vid1.lower() in vid2['id'].lower()):
         return 0
     return -1
-def comparecategorynames(name, tag):
-    return (name == tag['name'])
+
 
     
 
@@ -187,6 +186,8 @@ def sortVideos_byDias(catalog):
     sub_list = sub_list.copy()
     sorted_list=merg.sort(sub_list, cmpVideosBydias)
     return  sorted_list
+
+    
 def videos_por_likes(catalog,size):
     sub_list = lt.subList(catalog,1, size)
     sub_list = sub_list.copy()

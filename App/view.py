@@ -38,7 +38,7 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo") 
-    print("2- Consultar n numero de videos más vistos por país y en una categoria especifica(categoria, pais, numero de videos)")
+    print("2- Consultar n número de videos más vistos por país y en una categoría especifica")
     print("3- Consultar el video más trending por país(pais)")
     print("4- Consultar el video más trending por categoría (categoría)")
     print("5- Consultar los n videos con más likes por 'tag' de acuerdo a un país especifico")
@@ -138,6 +138,8 @@ while True:
         print("Categorias cargadas:") 
         print_todo_elemento(catalog["video_id"])
         print(separador())
+
+
     elif int(inputs[0]) == 2:
         pais = str(input("Escriba el nombre del país que desea consultar (ingles): "))
         catalogo=catalog["Video"]
@@ -158,6 +160,8 @@ while True:
                 print(separador())
                 print("-"+"País: "+pais)
                 imprime_toda_lista_econtrada_req1(video_ordenados_por_vistas)
+
+
                
     elif int(inputs[0]) == 3:
         pais = input("Nombre del pais a consultar: ")
