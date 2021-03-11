@@ -112,6 +112,8 @@ def print_req3(catalog):
            
 def print_req4(catalog):
     n=0
+    vid=lt.getElement(video_por_likes,1)
+    print(vid["country"])
     while lt.size(video_por_likes)>n:
             vid=lt.getElement(video_por_likes,n)
             print("Video "+str(n+1))
@@ -165,6 +167,7 @@ while True:
                 print("No se ha encontrado videos de "+pais+" en al categoría "+ categoria)
                 separador()
             else:
+                print("sea ha encontrado un total de "+str(lt.size(categ))+" videos, por fabor escriba un numero dentro de ese rango ")
                 size = int(input("Escriba el Numero de videos que desea consultar: "))       
                 video_ordenados_por_vistas=controller.sortVideos(categ, size)
                 print(lt.size(video_ordenados_por_vistas))

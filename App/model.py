@@ -148,6 +148,7 @@ def Get_rending_categoria(catalog):
     
     return trending_dates
 
+
 def Get_trending_pais(catalog):
     trending_dates= lt.newList()
     lista_prohibido=[]
@@ -187,9 +188,16 @@ def cmpVideosBydias(vid1, vid2):
     
     return (float(vid1) > float(vid2))
 
+
+
+
+
 def cmpVideosByLikes(video1, video2):
 
     return (float(video1['likes']) > float(video2['likes']))
+
+
+
 
 def comparecategorynames(name, tag):
     return (name == tag['name'])
