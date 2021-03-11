@@ -188,6 +188,7 @@ while True:
         else:
             print(separador())
             video_por_dias= controller.Get_trending_pais(video_pais)
+            Primero_por_pais=controller.sortVideos_byDias(video_por_dias)
             print_req2(video_por_dias)
 
     elif int(inputs[0]) == 4:
