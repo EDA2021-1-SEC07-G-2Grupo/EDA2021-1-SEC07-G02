@@ -140,14 +140,9 @@ def Get_rending_categoria(catalog):
               lt.addLast(trending_dates,dato)
               lista_prohibido.append(ID)
           else:
-               k=0
-               h=True
-               while k < lt.size(trending_dates) and h==True:
-                     vid=lt.getElement(trending_dates,k)
-                     if vid["ID"]==ID:
-                        vid["dias"]+=1
-                        h=False
-                     k+=1
+               posicion=lista_prohibido.index(ID)
+               elemento_cambiar=lt.getElement(trending_dates,posicion)
+               elemento_cambiar["dias"]+=1
 
           n+=1  
     
@@ -165,15 +160,9 @@ def Get_trending_pais(catalog):
               lt.addLast(trending_dates,dato)
               lista_prohibido.append(ID)
           else:
-               k=0
-               h=True
-               while k < lt.size(trending_dates) and h==True:
-                     vid=lt.getElement(trending_dates,k)
-                     if vid["ID"]==ID:
-                        vid["dias"]+=1
-                        h=False
-                     k+=1
-
+               posicion=lista_prohibido.index(ID)
+               elemento_cambiar=lt.getElement(trending_dates,posicion)
+               elemento_cambiar["dias"]+=1
           n+=1  
     
     return trending_dates

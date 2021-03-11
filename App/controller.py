@@ -57,7 +57,7 @@ def loadVideos(catalog):
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    videosfile = cf.data_dir + 'Videos/videos-5pct.csv'
+    videosfile = cf.data_dir + 'Videos/videos-large.csv'
     input_file = csv.DictReader(open(videosfile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(catalog, video)
@@ -85,7 +85,7 @@ def sortVideos(catalog, size):
 
 def GetVideosbyCountry (catalog, pais):
     return model.getvideobycountry(catalog, pais)
-    
+
 def Get_trending_pais(catalog):
     return model.Get_trending_pais(catalog)
 def GetVideosbycategoria(catalog, categoria):
